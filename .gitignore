@@ -1,0 +1,16 @@
+.idea
+data/
+target/
+/banned-ips.json
+/banned-players.json
+/nukkit.yml
+/ops.txt
+/pom.xml
+/server.log
+/server.properties
+/white-list.txt
+/worlds/
+/players/
+/plugins/
+/logs/
+.gradle
