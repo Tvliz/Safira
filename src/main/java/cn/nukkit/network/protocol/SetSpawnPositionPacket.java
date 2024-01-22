@@ -3,32 +3,36 @@ package cn.nukkit.network.protocol;
 /**
  * @author Nukkit Project Team
  */
-public class SetSpawnPositionPacket extends DataPacket {
+public class SetSpawnPositionPacket extends DataPacket
+{
 
-    public static final byte NETWORK_ID = ProtocolInfo.SET_SPAWN_POSITION_PACKET;
+	public static final byte NETWORK_ID = ProtocolInfo.SET_SPAWN_POSITION_PACKET;
 
-    public int y;
+	public int y;
 
-    public int z;
+	public int z;
 
-    public int x;
+	public int x;
 
-    @Override
-    public void decode() {
+	@Override
+	public void decode()
+	{
 
-    }
+	}
 
-    @Override
-    public void encode() {
-        reset();
-        putInt(x);
-        putInt(y);
-        putInt(z);
-    }
+	@Override
+	public void encode()
+	{
+		reset();
+		putInt(x);
+		putInt(y);
+		putInt(z);
+	}
 
-    @Override
-    public byte pid() {
-        return NETWORK_ID;
-    }
+	@Override
+	public byte pid()
+	{
+		return NETWORK_ID;
+	}
 
 }

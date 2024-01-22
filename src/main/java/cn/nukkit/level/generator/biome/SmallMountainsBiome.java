@@ -3,18 +3,21 @@ package cn.nukkit.level.generator.biome;
 /**
  * author: MagicDroidX Nukkit Project
  */
-public class SmallMountainsBiome extends MountainsBiome {
+public class SmallMountainsBiome extends MountainsBiome
+{
 
-    public SmallMountainsBiome() {
-        super();
+	public SmallMountainsBiome()
+	{
+		super();
 
-        this.setElevation(63, 97);
+		this.setElevation(63, 97);
 
-    }
+	}
 
-    @Override
-    public String getName() {
-        return "Small Mountains";
-    }
+	@Override
+	public String getName()
+	{
+		return "Small Mountains";
+	}
 
 }

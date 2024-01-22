@@ -3,8 +3,9 @@ package cn.nukkit.inventory;
 /**
  * author: MagicDroidX Nukkit Project
  */
-public interface InventoryHolder {
+public interface InventoryHolder
+{
 
-    Inventory getInventory();
+	Inventory getInventory();
 
 }

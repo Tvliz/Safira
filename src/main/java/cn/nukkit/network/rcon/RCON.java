@@ -14,66 +14,82 @@ import java.io.IOException;
  *
  * @author Tee7even
  */
-public class RCON {
+public class RCON
+{
 
-    private Server server;
+	private Server server;
 
-    private RCONServer serverThread;
+	private RCONServer serverThread;
 
-    public RCON(
-            Server server,
-            String password,
-            String address,
-            int port
-    ) {
-        if (password.isEmpty()) {
-            server.getLogger().critical(server.getLanguage().translateString("nukkit.server.rcon.emptyPasswordError"));
-            return;
-        }
+	public RCON(
+		Server server,
+		String password,
+		String address,
+		int port
+	)
+	{
+		if (password.isEmpty())
+		{
+			server.getLogger().critical(server.getLanguage().translateString("nukkit.server.rcon.emptyPasswordError"));
+			return;
+		}
 
-        this.server = server;
+		this.server = server;
 
-        try {
-            this.serverThread = new RCONServer(address, port, password);
-            this.serverThread.start();
-        } catch (IOException exception) {
-            this.server.getLogger().critical(this.server.getLanguage().translateString("nukkit.server.rcon.startupError", exception.getMessage()));
-            return;
-        }
+		try
+		{
+			this.serverThread = new RCONServer(address, port, password);
+			this.serverThread.start();
+		}
+		catch (IOException exception)
+		{
+			this.server.getLogger().critical(this.server.getLanguage().translateString("nukkit.server.rcon.startupError", exception.getMessage()));
+			return;
+		}
 
-        this.server.getLogger().info(this.server.getLanguage().translateString("nukkit.server.rcon.running", new String[]{address, String.valueOf(port)}));
-    }
+		this.server.getLogger().info(this.server.getLanguage().translateString("nukkit.server.rcon.running", new String[] { address, String.valueOf(port) }));
+	}
 
-    public void check() {
-        if (this.serverThread == null) {
-            return;
-        } else if (!this.serverThread.isAlive()) {
-            return;
-        }
+	public void check()
+	{
+		if (this.serverThread == null)
+		{
+			return;
+		} else if (!this.serverThread.isAlive())
+		{
+			return;
+		}
 
-        RCONCommand command;
-        while ((command = serverThread.receive()) != null) {
-            RemoteConsoleCommandSender sender = new RemoteConsoleCommandSender();
-            RemoteServerCommandEvent event = new RemoteServerCommandEvent(sender, command.getCommand());
-            this.server.getPluginManager().callEvent(event);
+		RCONCommand command;
+		while ((command = serverThread.receive()) != null)
+		{
+			RemoteConsoleCommandSender sender = new RemoteConsoleCommandSender();
+			RemoteServerCommandEvent event = new RemoteServerCommandEvent(sender, command.getCommand());
+			this.server.getPluginManager().callEvent(event);
 
-            if (!event.isCancelled()) {
-                this.server.dispatchCommand(sender, command.getCommand());
-            }
+			if (!event.isCancelled())
+			{
+				this.server.dispatchCommand(sender, command.getCommand());
+			}
 
-            this.serverThread.respond(command.getSender(), command.getId(), TextFormat.clean(sender.getMessages()));
-        }
-    }
+			this.serverThread.respond(command.getSender(), command.getId(), TextFormat.clean(sender.getMessages()));
+		}
+	}
 
-    public void close() {
-        try {
-            synchronized (serverThread) {
-                serverThread.close();
-                serverThread.wait(5000);
-            }
-        } catch (InterruptedException exception) {
-            //
-        }
-    }
+	public void close()
+	{
+		try
+		{
+			synchronized (serverThread)
+			{
+				serverThread.close();
+				serverThread.wait(5000);
+			}
+		}
+		catch (InterruptedException exception)
+		{
+			//
+		}
+	}
 
 }

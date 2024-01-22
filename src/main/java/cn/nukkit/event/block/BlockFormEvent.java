@@ -7,19 +7,22 @@ import cn.nukkit.event.HandlerList;
 /**
  * author: MagicDroidX Nukkit Project
  */
-public class BlockFormEvent extends BlockGrowEvent implements Cancellable {
+public class BlockFormEvent extends BlockGrowEvent implements Cancellable
+{
 
-    private static final HandlerList handlers = new HandlerList();
+	private static final HandlerList handlers = new HandlerList();
 
-    public BlockFormEvent(
-            Block block,
-            Block newState
-    ) {
-        super(block, newState);
-    }
+	public BlockFormEvent(
+		Block block,
+		Block newState
+	)
+	{
+		super(block, newState);
+	}
 
-    public static HandlerList getHandlers() {
-        return handlers;
-    }
+	public static HandlerList getHandlers()
+	{
+		return handlers;
+	}
 
 }

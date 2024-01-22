@@ -5,10 +5,12 @@ import cn.nukkit.plugin.Plugin;
 /**
  * author: MagicDroidX Nukkit Project
  */
-public class PluginEnableEvent extends PluginEvent {
+public class PluginEnableEvent extends PluginEvent
+{
 
-    public PluginEnableEvent(Plugin plugin) {
-        super(plugin);
-    }
+	public PluginEnableEvent(Plugin plugin)
+	{
+		super(plugin);
+	}
 
 }

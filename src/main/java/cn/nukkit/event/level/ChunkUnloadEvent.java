@@ -7,16 +7,19 @@ import cn.nukkit.level.format.FullChunk;
 /**
  * author: MagicDroidX Nukkit Project
  */
-public class ChunkUnloadEvent extends ChunkEvent implements Cancellable {
+public class ChunkUnloadEvent extends ChunkEvent implements Cancellable
+{
 
-    private static final HandlerList handlers = new HandlerList();
+	private static final HandlerList handlers = new HandlerList();
 
-    public ChunkUnloadEvent(FullChunk chunk) {
-        super(chunk);
-    }
+	public ChunkUnloadEvent(FullChunk chunk)
+	{
+		super(chunk);
+	}
 
-    public static HandlerList getHandlers() {
-        return handlers;
-    }
+	public static HandlerList getHandlers()
+	{
+		return handlers;
+	}
 
 }

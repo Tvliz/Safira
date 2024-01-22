@@ -7,34 +7,39 @@ import java.nio.channels.SocketChannel;
  *
  * @author Tee7even
  */
-public class RCONCommand {
+public class RCONCommand
+{
 
-    private final SocketChannel sender;
+	private final SocketChannel sender;
 
-    private final int id;
+	private final int id;
 
-    private final String command;
+	private final String command;
 
-    public RCONCommand(
-            SocketChannel sender,
-            int id,
-            String command
-    ) {
-        this.sender = sender;
-        this.id = id;
-        this.command = command;
-    }
+	public RCONCommand(
+		SocketChannel sender,
+		int id,
+		String command
+	)
+	{
+		this.sender = sender;
+		this.id = id;
+		this.command = command;
+	}
 
-    public SocketChannel getSender() {
-        return this.sender;
-    }
+	public SocketChannel getSender()
+	{
+		return this.sender;
+	}
 
-    public int getId() {
-        return this.id;
-    }
+	public int getId()
+	{
+		return this.id;
+	}
 
-    public String getCommand() {
-        return this.command;
-    }
+	public String getCommand()
+	{
+		return this.command;
+	}
 
 }

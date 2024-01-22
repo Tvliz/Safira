@@ -5,22 +5,25 @@ import cn.nukkit.block.Block;
 import cn.nukkit.event.HandlerList;
 import cn.nukkit.item.Item;
 
-public class PlayerBucketEmptyEvent extends PlayerBucketEvent {
+public class PlayerBucketEmptyEvent extends PlayerBucketEvent
+{
 
-    private static final HandlerList handlers = new HandlerList();
+	private static final HandlerList handlers = new HandlerList();
 
-    public PlayerBucketEmptyEvent(
-            Player who,
-            Block blockClicked,
-            Integer blockFace,
-            Item bucket,
-            Item itemInHand
-    ) {
-        super(who, blockClicked, blockFace, bucket, itemInHand);
-    }
+	public PlayerBucketEmptyEvent(
+		Player who,
+		Block blockClicked,
+		Integer blockFace,
+		Item bucket,
+		Item itemInHand
+	)
+	{
+		super(who, blockClicked, blockFace, bucket, itemInHand);
+	}
 
-    public static HandlerList getHandlers() {
-        return handlers;
-    }
+	public static HandlerList getHandlers()
+	{
+		return handlers;
+	}
 
 }

@@ -7,41 +7,42 @@ import cn.nukkit.network.protocol.DataPacket;
 /**
  * author: MagicDroidX Nukkit Project
  */
-public interface SourceInterface {
+public interface SourceInterface
+{
 
-    Integer putPacket(
-            Player player,
-            DataPacket packet
-    );
+	Integer putPacket(
+		Player player,
+		DataPacket packet
+	);
 
-    Integer putPacket(
-            Player player,
-            DataPacket packet,
-            boolean needACK
-    );
+	Integer putPacket(
+		Player player,
+		DataPacket packet,
+		boolean needACK
+	);
 
-    Integer putPacket(
-            Player player,
-            DataPacket packet,
-            boolean needACK,
-            boolean immediate
-    );
+	Integer putPacket(
+		Player player,
+		DataPacket packet,
+		boolean needACK,
+		boolean immediate
+	);
 
-    int getNetworkLatency(Player player);
+	int getNetworkLatency(Player player);
 
-    void close(Player player);
+	void close(Player player);
 
-    void close(
-            Player player,
-            String reason
-    );
+	void close(
+		Player player,
+		String reason
+	);
 
-    void setName(String name);
+	void setName(String name);
 
-    boolean process();
+	boolean process();
 
-    void shutdown();
+	void shutdown();
 
-    void emergencyShutdown();
+	void emergencyShutdown();
 
 }

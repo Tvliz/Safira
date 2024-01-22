@@ -16,154 +16,178 @@ import cn.nukkit.network.protocol.EntityEventPacket;
 /**
  * Created by yescallop on 2016/2/13.
  */
-public class EntityBoat extends EntityVehicle {
+public class EntityBoat extends EntityVehicle
+{
 
-    public static final int NETWORK_ID = 90;
+	public static final int NETWORK_ID = 90;
 
-    public static final int DATA_WOOD_ID = 20;
+	public static final int DATA_WOOD_ID = 20;
 
-    public EntityBoat(
-            FullChunk chunk,
-            CompoundTag nbt
-    ) {
-        super(chunk, nbt);
-    }
+	public EntityBoat(
+		FullChunk chunk,
+		CompoundTag nbt
+	)
+	{
+		super(chunk, nbt);
+	}
 
-    @Override
-    protected void initEntity() {
-        super.initEntity();
+	@Override
+	protected void initEntity()
+	{
+		super.initEntity();
 
-        this.dataProperties.putByte(DATA_WOOD_ID, this.namedTag.getByte("woodID"));
+		this.dataProperties.putByte(DATA_WOOD_ID, this.namedTag.getByte("woodID"));
 
-        this.setHealth(4);
-        this.setMaxHealth(4);
-    }
+		this.setHealth(4);
+		this.setMaxHealth(4);
+	}
 
-    @Override
-    public float getHeight() {
-        return 0.7f;
-    }
+	@Override
+	public float getHeight()
+	{
+		return 0.7f;
+	}
 
-    @Override
-    public float getWidth() {
-        return 1.6f;
-    }
+	@Override
+	public float getWidth()
+	{
+		return 1.6f;
+	}
 
-    @Override
-    protected float getDrag() {
-        return 0.1f;
-    }
+	@Override
+	protected float getDrag()
+	{
+		return 0.1f;
+	}
 
-    @Override
-    protected float getGravity() {
-        return 0.1f;
-    }
+	@Override
+	protected float getGravity()
+	{
+		return 0.1f;
+	}
 
-    @Override
-    public int getNetworkId() {
-        return NETWORK_ID;
-    }
+	@Override
+	public int getNetworkId()
+	{
+		return NETWORK_ID;
+	}
 
-    @Override
-    public void spawnTo(Player player) {
-        AddEntityPacket pk = new AddEntityPacket();
-        pk.eid = this.getId();
-        pk.type = EntityBoat.NETWORK_ID;
-        pk.x = (float) this.x;
-        pk.y = (float) this.y;
-        pk.z = (float) this.z;
-        pk.speedX = 0;
-        pk.speedY = 0;
-        pk.speedZ = 0;
-        pk.yaw = (float) this.yaw;
-        pk.pitch = (float) this.pitch;
-        pk.metadata = this.dataProperties;
-        player.dataPacket(pk);
+	@Override
+	public void spawnTo(Player player)
+	{
+		AddEntityPacket pk = new AddEntityPacket();
+		pk.eid = this.getId();
+		pk.type = EntityBoat.NETWORK_ID;
+		pk.x = (float) this.x;
+		pk.y = (float) this.y;
+		pk.z = (float) this.z;
+		pk.speedX = 0;
+		pk.speedY = 0;
+		pk.speedZ = 0;
+		pk.yaw = (float) this.yaw;
+		pk.pitch = (float) this.pitch;
+		pk.metadata = this.dataProperties;
+		player.dataPacket(pk);
 
-        super.spawnTo(player);
-    }
+		super.spawnTo(player);
+	}
 
-    @Override
-    public void attack(EntityDamageEvent source) {
-        super.attack(source);
-        if (source.isCancelled()) return;
-        if (source instanceof EntityDamageByEntityEvent) {
-            Entity damager = ((EntityDamageByEntityEvent) source).getDamager();
-            if (damager instanceof Player) {
-                if (((Player) damager).isCreative()) {
-                    this.kill();
-                }
-                if (this.getHealth() <= 0) {
-                    if (((Player) damager).isSurvival()) {
-                        this.level.dropItem(this, new ItemBoat());
-                    }
-                    this.close();
-                }
-            }
-        }
+	@Override
+	public void attack(EntityDamageEvent source)
+	{
+		super.attack(source);
+		if (source.isCancelled()) return;
+		if (source instanceof EntityDamageByEntityEvent)
+		{
+			Entity damager = ((EntityDamageByEntityEvent) source).getDamager();
+			if (damager instanceof Player)
+			{
+				if (((Player) damager).isCreative())
+				{
+					this.kill();
+				}
+				if (this.getHealth() <= 0)
+				{
+					if (((Player) damager).isSurvival())
+					{
+						this.level.dropItem(this, new ItemBoat());
+					}
+					this.close();
+				}
+			}
+		}
 
-        EntityEventPacket pk = new EntityEventPacket();
-        pk.eid = this.getId();
-        pk.event = this.getHealth() <= 0 ? EntityEventPacket.DEATH_ANIMATION : EntityEventPacket.HURT_ANIMATION;
-        Server.broadcastPacket(this.hasSpawned.values(), pk);
-    }
+		EntityEventPacket pk = new EntityEventPacket();
+		pk.eid = this.getId();
+		pk.event = this.getHealth() <= 0 ? EntityEventPacket.DEATH_ANIMATION : EntityEventPacket.HURT_ANIMATION;
+		Server.broadcastPacket(this.hasSpawned.values(), pk);
+	}
 
-    @Override
-    public void close() {
-        super.close();
+	@Override
+	public void close()
+	{
+		super.close();
 
-        if (this.linkedEntity instanceof Player) {
-            this.linkedEntity.riding = null;
-        }
+		if (this.linkedEntity instanceof Player)
+		{
+			this.linkedEntity.riding = null;
+		}
 
-        SmokeParticle particle = new SmokeParticle(this);
-        this.level.addParticle(particle);
-    }
+		SmokeParticle particle = new SmokeParticle(this);
+		this.level.addParticle(particle);
+	}
 
-    @Override
-    public boolean onUpdate(int currentTick) {
-        if (this.closed) {
-            return false;
-        }
+	@Override
+	public boolean onUpdate(int currentTick)
+	{
+		if (this.closed)
+		{
+			return false;
+		}
 
-        int tickDiff = currentTick - this.lastUpdate;
+		int tickDiff = currentTick - this.lastUpdate;
 
-        if (tickDiff <= 0 && !this.justCreated) {
-            return true;
-        }
+		if (tickDiff <= 0 && !this.justCreated)
+		{
+			return true;
+		}
 
-        this.lastUpdate = currentTick;
+		this.lastUpdate = currentTick;
 
-        boolean hasUpdate = this.entityBaseTick(tickDiff);
+		boolean hasUpdate = this.entityBaseTick(tickDiff);
 
-        if (this.isAlive()) {
+		if (this.isAlive())
+		{
 
-            this.motionY = (this.level.getBlock(new Vector3(this.x, this.y, this.z)).getBoundingBox() != null || this.isInsideOfWater()) ? getGravity() : -0.08;
+			this.motionY = (this.level.getBlock(new Vector3(this.x, this.y, this.z)).getBoundingBox() != null || this.isInsideOfWater()) ? getGravity() : -0.08;
 
-            if (this.checkObstruction(this.x, this.y, this.z)) {
-                hasUpdate = true;
-            }
+			if (this.checkObstruction(this.x, this.y, this.z))
+			{
+				hasUpdate = true;
+			}
 
-            this.move(this.motionX, this.motionY, this.motionZ);
+			this.move(this.motionX, this.motionY, this.motionZ);
 
-            double friction = 1 - this.getDrag();
+			double friction = 1 - this.getDrag();
 
-            if (this.onGround && (Math.abs(this.motionX) > 0.00001 || Math.abs(this.motionZ) > 0.00001)) {
-                friction *= this.getLevel().getBlock(this.temporalVector.setComponents((int) Math.floor(this.x), (int) Math.floor(this.y - 1), (int) Math.floor(this.z) - 1)).getFrictionFactor();
-            }
+			if (this.onGround && (Math.abs(this.motionX) > 0.00001 || Math.abs(this.motionZ) > 0.00001))
+			{
+				friction *= this.getLevel().getBlock(this.temporalVector.setComponents((int) Math.floor(this.x), (int) Math.floor(this.y - 1), (int) Math.floor(this.z) - 1)).getFrictionFactor();
+			}
 
-            this.motionX *= friction;
-            this.motionY *= 1 - this.getDrag();
-            this.motionZ *= friction;
+			this.motionX *= friction;
+			this.motionY *= 1 - this.getDrag();
+			this.motionZ *= friction;
 
-            if (this.onGround) {
-                this.motionY *= -0.5;
-            }
+			if (this.onGround)
+			{
+				this.motionY *= -0.5;
+			}
 
-            this.updateMovement();
-        }
+			this.updateMovement();
+		}
 
-        return hasUpdate || !this.onGround || Math.abs(this.motionX) > 0.00001 || Math.abs(this.motionY) > 0.00001 || Math.abs(this.motionZ) > 0.00001;
-    }
+		return hasUpdate || !this.onGround || Math.abs(this.motionX) > 0.00001 || Math.abs(this.motionY) > 0.00001 || Math.abs(this.motionZ) > 0.00001;
+	}
 
 }

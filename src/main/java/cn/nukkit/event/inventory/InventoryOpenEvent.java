@@ -8,26 +8,30 @@ import cn.nukkit.inventory.Inventory;
 /**
  * author: Box Nukkit Project
  */
-public class InventoryOpenEvent extends InventoryEvent implements Cancellable {
+public class InventoryOpenEvent extends InventoryEvent implements Cancellable
+{
 
-    private static final HandlerList handlers = new HandlerList();
+	private static final HandlerList handlers = new HandlerList();
 
-    private final Player who;
+	private final Player who;
 
-    public InventoryOpenEvent(
-            Inventory inventory,
-            Player who
-    ) {
-        super(inventory);
-        this.who = who;
-    }
+	public InventoryOpenEvent(
+		Inventory inventory,
+		Player who
+	)
+	{
+		super(inventory);
+		this.who = who;
+	}
 
-    public static HandlerList getHandlers() {
-        return handlers;
-    }
+	public static HandlerList getHandlers()
+	{
+		return handlers;
+	}
 
-    public Player getPlayer() {
-        return this.who;
-    }
+	public Player getPlayer()
+	{
+		return this.who;
+	}
 
 }

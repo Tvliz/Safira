@@ -5,12 +5,13 @@ import cn.nukkit.Player;
 /**
  * Author: BeYkeRYkt Nukkit Project
  */
-public interface EntityOwnable {
+public interface EntityOwnable
+{
 
-    String getOwnerName();
+	String getOwnerName();
 
-    void setOwnerName(String playerName);
+	void setOwnerName(String playerName);
 
-    Player getOwner();
+	Player getOwner();
 
 }

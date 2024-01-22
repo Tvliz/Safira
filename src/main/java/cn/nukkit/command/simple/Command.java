@@ -8,16 +8,17 @@ import java.lang.annotation.Target;
 /**
  * @author Tee7even
  */
-@Target(ElementType.METHOD)
-@Retention(RetentionPolicy.RUNTIME)
-public @interface Command {
+@Target (ElementType.METHOD)
+@Retention (RetentionPolicy.RUNTIME)
+public @interface Command
+{
 
-    String name();
+	String name();
 
-    String description() default "";
+	String description() default "";
 
-    String usageMessage() default "";
+	String usageMessage() default "";
 
-    String[] aliases() default {};
+	String[] aliases() default {};
 
 }

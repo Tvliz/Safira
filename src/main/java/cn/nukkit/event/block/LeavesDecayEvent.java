@@ -7,16 +7,19 @@ import cn.nukkit.event.HandlerList;
 /**
  * author: MagicDroidX Nukkit Project
  */
-public class LeavesDecayEvent extends BlockEvent implements Cancellable {
+public class LeavesDecayEvent extends BlockEvent implements Cancellable
+{
 
-    private static final HandlerList handlers = new HandlerList();
+	private static final HandlerList handlers = new HandlerList();
 
-    public LeavesDecayEvent(Block block) {
-        super(block);
-    }
+	public LeavesDecayEvent(Block block)
+	{
+		super(block);
+	}
 
-    public static HandlerList getHandlers() {
-        return handlers;
-    }
+	public static HandlerList getHandlers()
+	{
+		return handlers;
+	}
 
 }

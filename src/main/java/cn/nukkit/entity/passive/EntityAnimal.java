@@ -11,42 +11,48 @@ import cn.nukkit.network.protocol.AddEntityPacket;
 /**
  * author: MagicDroidX Nukkit Project
  */
-public abstract class EntityAnimal extends EntityCreature implements EntityAgeable {
+public abstract class EntityAnimal extends EntityCreature implements EntityAgeable
+{
 
-    public EntityAnimal(
-            FullChunk chunk,
-            CompoundTag nbt
-    ) {
-        super(chunk, nbt);
-    }
+	public EntityAnimal(
+		FullChunk chunk,
+		CompoundTag nbt
+	)
+	{
+		super(chunk, nbt);
+	}
 
-    @Override
-    protected void initEntity() {
-        super.initEntity();
-        if (this.getDataProperty(DATA_AGEABLE_FLAGS) == null) {
-            this.setDataProperty(new ByteEntityData(DATA_AGEABLE_FLAGS, 0));
-        }
-    }
+	@Override
+	protected void initEntity()
+	{
+		super.initEntity();
+		if (this.getDataProperty(DATA_AGEABLE_FLAGS) == null)
+		{
+			this.setDataProperty(new ByteEntityData(DATA_AGEABLE_FLAGS, 0));
+		}
+	}
 
-    @Override
-    public boolean isBaby() {
-        return this.getDataFlag(DATA_AGEABLE_FLAGS, DATA_FLAG_BABY);
-    }
+	@Override
+	public boolean isBaby()
+	{
+		return this.getDataFlag(DATA_AGEABLE_FLAGS, DATA_FLAG_BABY);
+	}
 
-    public void spawnTo(Player player) {
-        AddEntityPacket pk = new AddEntityPacket();
-        pk.type = this.getNetworkId();
-        pk.eid = this.getId();
-        pk.x = (float) this.x;
-        pk.y = (float) this.y;
-        pk.z = (float) this.z;
-        pk.speedX = (float) this.motionX;
-        pk.speedY = (float) this.motionY;
-        pk.speedZ = (float) this.motionZ;
-        pk.metadata = this.dataProperties;
-        player.dataPacket(pk);
+	public void spawnTo(Player player)
+	{
+		AddEntityPacket pk = new AddEntityPacket();
+		pk.type = this.getNetworkId();
+		pk.eid = this.getId();
+		pk.x = (float) this.x;
+		pk.y = (float) this.y;
+		pk.z = (float) this.z;
+		pk.speedX = (float) this.motionX;
+		pk.speedY = (float) this.motionY;
+		pk.speedZ = (float) this.motionZ;
+		pk.metadata = this.dataProperties;
+		player.dataPacket(pk);
 
-        super.spawnTo(player);
-    }
+		super.spawnTo(player);
+	}
 
 }

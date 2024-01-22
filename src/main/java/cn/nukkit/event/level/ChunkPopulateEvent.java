@@ -6,16 +6,19 @@ import cn.nukkit.level.format.FullChunk;
 /**
  * author: MagicDroidX Nukkit Project
  */
-public class ChunkPopulateEvent extends ChunkEvent {
+public class ChunkPopulateEvent extends ChunkEvent
+{
 
-    private static final HandlerList handlers = new HandlerList();
+	private static final HandlerList handlers = new HandlerList();
 
-    public ChunkPopulateEvent(FullChunk chunk) {
-        super(chunk);
-    }
+	public ChunkPopulateEvent(FullChunk chunk)
+	{
+		super(chunk);
+	}
 
-    public static HandlerList getHandlers() {
-        return handlers;
-    }
+	public static HandlerList getHandlers()
+	{
+		return handlers;
+	}
 
 }

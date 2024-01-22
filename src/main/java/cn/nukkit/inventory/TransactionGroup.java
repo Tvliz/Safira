@@ -5,20 +5,21 @@ import java.util.Set;
 /**
  * author: MagicDroidX Nukkit Project
  */
-public interface TransactionGroup {
+public interface TransactionGroup
+{
 
-    long getCreationTime();
+	long getCreationTime();
 
-    Set<Transaction> getTransactions();
+	Set<Transaction> getTransactions();
 
-    Set<Inventory> getInventories();
+	Set<Inventory> getInventories();
 
-    void addTransaction(Transaction transaction);
+	void addTransaction(Transaction transaction);
 
-    boolean canExecute();
+	boolean canExecute();
 
-    boolean execute();
+	boolean execute();
 
-    boolean hasExecuted();
+	boolean hasExecuted();
 
 }

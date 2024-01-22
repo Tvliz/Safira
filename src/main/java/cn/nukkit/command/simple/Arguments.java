@@ -8,12 +8,13 @@ import java.lang.annotation.Target;
 /**
  * @author Tee7even
  */
-@Target(ElementType.METHOD)
-@Retention(RetentionPolicy.RUNTIME)
-public @interface Arguments {
+@Target (ElementType.METHOD)
+@Retention (RetentionPolicy.RUNTIME)
+public @interface Arguments
+{
 
-    int min() default 0;
+	int min() default 0;
 
-    int max() default 0;
+	int max() default 0;
 
 }

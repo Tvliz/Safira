@@ -34,28 +34,31 @@ import cn.nukkit.plugin.Plugin;
  * @author 粉鞋大妈(javadoc) @ Nukkit Project
  * @since Nukkit 1.0 | Nukkit API 1.0.0
  */
-public abstract class PluginTask<T extends Plugin> extends Task {
+public abstract class PluginTask <T extends Plugin> extends Task
+{
 
-    protected final T owner;
+	protected final T owner;
 
-    /**
-     * 构造一个插件拥有的任务的方法。<br>Constructs a plugin-owned task.
-     *
-     * @param owner 这个任务的所有者插件。<br>The plugin object that owns this task.
-     * @since Nukkit 1.0 | Nukkit API 1.0.0
-     */
-    public PluginTask(T owner) {
-        this.owner = owner;
-    }
+	/**
+	 * 构造一个插件拥有的任务的方法。<br>Constructs a plugin-owned task.
+	 *
+	 * @param owner 这个任务的所有者插件。<br>The plugin object that owns this task.
+	 * @since Nukkit 1.0 | Nukkit API 1.0.0
+	 */
+	public PluginTask(T owner)
+	{
+		this.owner = owner;
+	}
 
-    /**
-     * 返回这个任务的所有者插件。<br> Returns the owner of this task.
-     *
-     * @return 这个任务的所有者插件。<br>The plugin that owns this task.
-     * @since Nukkit 1.0 | Nukkit API 1.0.0
-     */
-    public final T getOwner() {
-        return this.owner;
-    }
+	/**
+	 * 返回这个任务的所有者插件。<br> Returns the owner of this task.
+	 *
+	 * @return 这个任务的所有者插件。<br>The plugin that owns this task.
+	 * @since Nukkit 1.0 | Nukkit API 1.0.0
+	 */
+	public final T getOwner()
+	{
+		return this.owner;
+	}
 
 }

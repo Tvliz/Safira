@@ -1,6 +1,7 @@
 package cn.nukkit.redstone;
 
 import cn.nukkit.block.Block;
+
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -9,10 +10,11 @@ import lombok.RequiredArgsConstructor;
  */
 @Getter
 @RequiredArgsConstructor
-public class UpdateObject {
+public class UpdateObject
+{
 
-    private final int population;
+	private final int population;
 
-    private final Block location;
+	private final Block location;
 
 }

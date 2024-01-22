@@ -16,6 +16,7 @@ repositories {
 dependencies {
     implementation("org.fusesource.jansi:jansi:2.4.0")
     implementation("com.google.code.gson:gson:2.10.1")
+
     implementation("org.yaml:snakeyaml:2.2")
 
     implementation("org.iq80.leveldb:leveldb:0.12") {
@@ -25,16 +26,18 @@ dependencies {
     implementation("com.google.guava:guava:33.0.0-jre")
     implementation("io.netty:netty-all:4.1.104.Final")
 
-    implementation("net.minecrell:terminalconsoleappender:1.1.1") {
+    implementation("net.minecrell:terminalconsoleappender:1.3.0") {
         exclude(group = "org.apache.logging.log4j", module = "log4j-core")
         exclude(group = "org.jline", module = "jline-reader")
-        exclude(group = "org.jline", module = "jline-terminal")
-        exclude(group = "org.jline", module = "jline-terminal-jna")
     }
 
-    implementation("org.jline:jline:3.24.1")
-    implementation("org.apache.logging.log4j:log4j-api:2.17.2")
-    implementation("org.apache.logging.log4j:log4j-core:2.17.2")
+    implementation("org.jline:jline:3.25.0") {
+        exclude(group = "org.jline", module = "jline-terminal-jansi")
+    }
+
+    implementation("org.apache.logging.log4j:log4j-api:2.22.1")
+    implementation("org.apache.logging.log4j:log4j-core:2.22.1")
+
     implementation("org.jetbrains:annotations:24.1.0")
 }
 

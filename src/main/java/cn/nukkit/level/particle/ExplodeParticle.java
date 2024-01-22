@@ -5,10 +5,12 @@ import cn.nukkit.math.Vector3;
 /**
  * Created on 2015/11/21 by xtypr. Package cn.nukkit.level.particle in project Nukkit .
  */
-public class ExplodeParticle extends GenericParticle {
+public class ExplodeParticle extends GenericParticle
+{
 
-    public ExplodeParticle(Vector3 pos) {
-        super(pos, Particle.TYPE_EXPLODE);
-    }
+	public ExplodeParticle(Vector3 pos)
+	{
+		super(pos, Particle.TYPE_EXPLODE);
+	}
 
 }

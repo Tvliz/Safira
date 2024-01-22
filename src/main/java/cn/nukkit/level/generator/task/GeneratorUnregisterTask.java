@@ -6,17 +6,20 @@ import cn.nukkit.scheduler.AsyncTask;
 /**
  * author: MagicDroidX Nukkit Project
  */
-public class GeneratorUnregisterTask extends AsyncTask {
+public class GeneratorUnregisterTask extends AsyncTask
+{
 
-    public final int levelId;
+	public final int levelId;
 
-    public GeneratorUnregisterTask(Level level) {
-        this.levelId = level.getId();
-    }
+	public GeneratorUnregisterTask(Level level)
+	{
+		this.levelId = level.getId();
+	}
 
-    @Override
-    public void onRun() {
-        GeneratorPool.remove(levelId);
-    }
+	@Override
+	public void onRun()
+	{
+		GeneratorPool.remove(levelId);
+	}
 
 }

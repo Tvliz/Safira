@@ -5,16 +5,17 @@ import cn.nukkit.item.Item;
 /**
  * author: MagicDroidX Nukkit Project
  */
-public interface Transaction {
+public interface Transaction
+{
 
-    Inventory getInventory();
+	Inventory getInventory();
 
-    int getSlot();
+	int getSlot();
 
-    Item getSourceItem();
+	Item getSourceItem();
 
-    Item getTargetItem();
+	Item getTargetItem();
 
-    long getCreationTime();
+	long getCreationTime();
 
 }

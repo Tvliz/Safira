@@ -3,41 +3,49 @@ package cn.nukkit.item;
 /**
  * author: MagicDroidX Nukkit Project
  */
-public class ItemLeggingsIron extends ItemArmor {
+public class ItemLeggingsIron extends ItemArmor
+{
 
-    public ItemLeggingsIron() {
-        this(0, 1);
-    }
+	public ItemLeggingsIron()
+	{
+		this(0, 1);
+	}
 
-    public ItemLeggingsIron(Integer meta) {
-        this(meta, 1);
-    }
+	public ItemLeggingsIron(Integer meta)
+	{
+		this(meta, 1);
+	}
 
-    public ItemLeggingsIron(
-            Integer meta,
-            int count
-    ) {
-        super(IRON_LEGGINGS, meta, count, "Iron Leggings");
-    }
+	public ItemLeggingsIron(
+		Integer meta,
+		int count
+	)
+	{
+		super(IRON_LEGGINGS, meta, count, "Iron Leggings");
+	}
 
-    @Override
-    public int getTier() {
-        return ItemArmor.TIER_IRON;
-    }
+	@Override
+	public int getTier()
+	{
+		return ItemArmor.TIER_IRON;
+	}
 
-    @Override
-    public boolean isLeggings() {
-        return true;
-    }
+	@Override
+	public boolean isLeggings()
+	{
+		return true;
+	}
 
-    @Override
-    public int getArmorPoints() {
-        return 5;
-    }
+	@Override
+	public int getArmorPoints()
+	{
+		return 5;
+	}
 
-    @Override
-    public int getMaxDurability() {
-        return 226;
-    }
+	@Override
+	public int getMaxDurability()
+	{
+		return 226;
+	}
 
 }

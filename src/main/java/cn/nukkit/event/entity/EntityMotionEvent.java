@@ -8,31 +8,36 @@ import cn.nukkit.math.Vector3;
 /**
  * author: MagicDroidX Nukkit Project
  */
-public class EntityMotionEvent extends EntityEvent implements Cancellable {
+public class EntityMotionEvent extends EntityEvent implements Cancellable
+{
 
-    private static final HandlerList handlers = new HandlerList();
+	private static final HandlerList handlers = new HandlerList();
 
-    private final Vector3 motion;
+	private final Vector3 motion;
 
-    public EntityMotionEvent(
-            Entity entity,
-            Vector3 motion
-    ) {
-        this.entity = entity;
-        this.motion = motion;
-    }
+	public EntityMotionEvent(
+		Entity entity,
+		Vector3 motion
+	)
+	{
+		this.entity = entity;
+		this.motion = motion;
+	}
 
-    public static HandlerList getHandlers() {
-        return handlers;
-    }
+	public static HandlerList getHandlers()
+	{
+		return handlers;
+	}
 
-    @Deprecated
-    public Vector3 getVector() {
-        return this.motion;
-    }
+	@Deprecated
+	public Vector3 getVector()
+	{
+		return this.motion;
+	}
 
-    public Vector3 getMotion() {
-        return this.motion;
-    }
+	public Vector3 getMotion()
+	{
+		return this.motion;
+	}
 
 }

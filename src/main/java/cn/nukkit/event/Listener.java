@@ -35,6 +35,7 @@ package cn.nukkit.event;
  * @see cn.nukkit.event.Event
  * @since Nukkit 1.0 | Nukkit API 1.0.0
  */
-public interface Listener {
+public interface Listener
+{
 
 }

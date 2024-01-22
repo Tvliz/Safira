@@ -13,154 +13,180 @@ import cn.nukkit.network.protocol.AddEntityPacket;
 /**
  * @author MagicDroidX
  */
-public class EntityPrimedTNT extends Entity implements EntityExplosive {
+public class EntityPrimedTNT extends Entity implements EntityExplosive
+{
 
-    public static final int NETWORK_ID = 65;
+	public static final int NETWORK_ID = 65;
 
-    protected int fuse;
+	protected int fuse;
 
-    public EntityPrimedTNT(
-            FullChunk chunk,
-            CompoundTag nbt
-    ) {
-        super(chunk, nbt);
-    }
+	public EntityPrimedTNT(
+		FullChunk chunk,
+		CompoundTag nbt
+	)
+	{
+		super(chunk, nbt);
+	}
 
-    @Override
-    public float getWidth() {
-        return 0.98f;
-    }
+	@Override
+	public float getWidth()
+	{
+		return 0.98f;
+	}
 
-    @Override
-    public float getLength() {
-        return 0.98f;
-    }
+	@Override
+	public float getLength()
+	{
+		return 0.98f;
+	}
 
-    @Override
-    public float getHeight() {
-        return 0.98f;
-    }
+	@Override
+	public float getHeight()
+	{
+		return 0.98f;
+	}
 
-    @Override
-    protected float getGravity() {
-        return 0.04f;
-    }
+	@Override
+	protected float getGravity()
+	{
+		return 0.04f;
+	}
 
-    @Override
-    protected float getDrag() {
-        return 0.02f;
-    }
+	@Override
+	protected float getDrag()
+	{
+		return 0.02f;
+	}
 
-    @Override
-    public boolean canCollide() {
-        return false;
-    }
+	@Override
+	public boolean canCollide()
+	{
+		return false;
+	}
 
-    @Override
-    public int getNetworkId() {
-        return NETWORK_ID;
-    }
+	@Override
+	public int getNetworkId()
+	{
+		return NETWORK_ID;
+	}
 
-    @Override
-    public void attack(EntityDamageEvent source) {
-        if (source.getCause() == EntityDamageEvent.CAUSE_VOID) {
-            super.attack(source);
-        }
-    }
+	@Override
+	public void attack(EntityDamageEvent source)
+	{
+		if (source.getCause() == EntityDamageEvent.CAUSE_VOID)
+		{
+			super.attack(source);
+		}
+	}
 
-    protected void initEntity() {
-        super.initEntity();
+	protected void initEntity()
+	{
+		super.initEntity();
 
-        if (namedTag.contains("Fuse")) {
-            fuse = namedTag.getByte("Fuse");
-        } else {
-            fuse = 80;
-        }
-    }
+		if (namedTag.contains("Fuse"))
+		{
+			fuse = namedTag.getByte("Fuse");
+		} else
+		{
+			fuse = 80;
+		}
+	}
 
 
-    public boolean canCollideWith(Entity entity) {
-        return false;
-    }
+	public boolean canCollideWith(Entity entity)
+	{
+		return false;
+	}
 
-    public void saveNBT() {
-        super.saveNBT();
-        namedTag.putByte("Fuse", fuse);
-    }
+	public void saveNBT()
+	{
+		super.saveNBT();
+		namedTag.putByte("Fuse", fuse);
+	}
 
-    public boolean onUpdate(int currentTick) {
+	public boolean onUpdate(int currentTick)
+	{
 
-        if (closed) {
-            return false;
-        }
+		if (closed)
+		{
+			return false;
+		}
 
-        int tickDiff = currentTick - lastUpdate;
+		int tickDiff = currentTick - lastUpdate;
 
-        if (tickDiff <= 0 && !justCreated) {
-            return true;
-        }
-        lastUpdate = currentTick;
+		if (tickDiff <= 0 && !justCreated)
+		{
+			return true;
+		}
+		lastUpdate = currentTick;
 
-        boolean hasUpdate = entityBaseTick(tickDiff);
+		boolean hasUpdate = entityBaseTick(tickDiff);
 
-        if (isAlive()) {
+		if (isAlive())
+		{
 
-            motionY -= getGravity();
+			motionY -= getGravity();
 
-            move(motionX, motionY, motionZ);
+			move(motionX, motionY, motionZ);
 
-            float friction = 1 - getDrag();
+			float friction = 1 - getDrag();
 
-            motionX *= friction;
-            motionY *= friction;
-            motionZ *= friction;
+			motionX *= friction;
+			motionY *= friction;
+			motionZ *= friction;
 
-            updateMovement();
+			updateMovement();
 
-            if (onGround) {
-                motionY *= -0.5;
-                motionX *= 0.7;
-                motionZ *= 0.7;
-            }
+			if (onGround)
+			{
+				motionY *= -0.5;
+				motionX *= 0.7;
+				motionZ *= 0.7;
+			}
 
-            fuse -= tickDiff;
+			fuse -= tickDiff;
 
-            if (fuse <= 0) {
-                explode();
-                kill();
-            }
+			if (fuse <= 0)
+			{
+				explode();
+				kill();
+			}
 
-        }
+		}
 
-        return hasUpdate || fuse >= 0 || Math.abs(motionX) > 0.00001 || Math.abs(motionY) > 0.00001 || Math.abs(motionZ) > 0.00001;
-    }
+		return hasUpdate || fuse >= 0 || Math.abs(motionX) > 0.00001 || Math.abs(motionY) > 0.00001 || Math.abs(motionZ) > 0.00001;
+	}
 
-    public void explode() {
-        EntityExplosionPrimeEvent event = new EntityExplosionPrimeEvent(this, 4);
-        server.getPluginManager().callEvent(event);
-        if (event.isCancelled()) {
-            return;
-        }
-        Explosion explosion = new Explosion(this, event.getForce(), this);
-        if (event.isBlockBreaking()) {
-            explosion.explodeA();
-        }
-        explosion.explodeB();
-    }
+	public void explode()
+	{
+		EntityExplosionPrimeEvent event = new EntityExplosionPrimeEvent(this, 4);
+		server.getPluginManager().callEvent(event);
+		if (event.isCancelled())
+		{
+			return;
+		}
+		Explosion explosion = new Explosion(this, event.getForce(), this);
+		if (event.isBlockBreaking())
+		{
+			explosion.explodeA();
+		}
+		explosion.explodeB();
+	}
 
-    public void spawnTo(Player player) {
-        AddEntityPacket packet = new AddEntityPacket();
-        packet.type = EntityPrimedTNT.NETWORK_ID;
-        packet.eid = getId();
-        packet.x = (float) x;
-        packet.y = (float) y;
-        packet.z = (float) z;
-        packet.speedX = (float) motionX;
-        packet.speedY = (float) motionY;
-        packet.speedZ = (float) motionZ;
-        packet.metadata = dataProperties;
-        player.dataPacket(packet);
-        super.spawnTo(player);
-    }
+	public void spawnTo(Player player)
+	{
+		AddEntityPacket packet = new AddEntityPacket();
+		packet.type = EntityPrimedTNT.NETWORK_ID;
+		packet.eid = getId();
+		packet.x = (float) x;
+		packet.y = (float) y;
+		packet.z = (float) z;
+		packet.speedX = (float) motionX;
+		packet.speedY = (float) motionY;
+		packet.speedZ = (float) motionZ;
+		packet.metadata = dataProperties;
+		player.dataPacket(packet);
+		super.spawnTo(player);
+	}
 
 }

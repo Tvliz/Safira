@@ -6,28 +6,29 @@ import cn.nukkit.math.Vector3;
 /**
  * author: MagicDroidX Nukkit Project
  */
-public interface ChunkLoader {
+public interface ChunkLoader
+{
 
-    Integer getLoaderId();
+	Integer getLoaderId();
 
-    boolean isLoaderActive();
+	boolean isLoaderActive();
 
-    Position getPosition();
+	Position getPosition();
 
-    double getX();
+	double getX();
 
-    double getZ();
+	double getZ();
 
-    Level getLevel();
+	Level getLevel();
 
-    void onChunkChanged(FullChunk chunk);
+	void onChunkChanged(FullChunk chunk);
 
-    void onChunkLoaded(FullChunk chunk);
+	void onChunkLoaded(FullChunk chunk);
 
-    void onChunkUnloaded(FullChunk chunk);
+	void onChunkUnloaded(FullChunk chunk);
 
-    void onChunkPopulated(FullChunk chunk);
+	void onChunkPopulated(FullChunk chunk);
 
-    void onBlockChanged(Vector3 block);
+	void onBlockChanged(Vector3 block);
 
 }

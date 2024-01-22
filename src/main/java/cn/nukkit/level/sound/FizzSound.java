@@ -6,17 +6,20 @@ import cn.nukkit.network.protocol.LevelEventPacket;
 /**
  * Created on 2015/11/21 by xtypr. Package cn.nukkit.level.sound in project Nukkit .
  */
-public class FizzSound extends GenericSound {
+public class FizzSound extends GenericSound
+{
 
-    public FizzSound(Vector3 pos) {
-        this(pos, 0);
-    }
+	public FizzSound(Vector3 pos)
+	{
+		this(pos, 0);
+	}
 
-    public FizzSound(
-            Vector3 pos,
-            float pitch
-    ) {
-        super(pos, LevelEventPacket.EVENT_SOUND_FIZZ, pitch);
-    }
+	public FizzSound(
+		Vector3 pos,
+		float pitch
+	)
+	{
+		super(pos, LevelEventPacket.EVENT_SOUND_FIZZ, pitch);
+	}
 
 }

@@ -10,45 +10,52 @@ import cn.nukkit.item.Item;
 /**
  * author: MagicDroidX Nukkit Project
  */
-public class CraftItemEvent extends Event implements Cancellable {
+public class CraftItemEvent extends Event implements Cancellable
+{
 
-    private static final HandlerList handlers = new HandlerList();
+	private static final HandlerList handlers = new HandlerList();
 
-    private final Recipe recipe;
+	private final Recipe recipe;
 
-    private final Player player;
+	private final Player player;
 
-    private Item[] input = new Item[0];
+	private Item[] input = new Item[0];
 
-    public CraftItemEvent(
-            Player player,
-            Item[] input,
-            Recipe recipe
-    ) {
-        this.player = player;
-        this.input = input;
-        this.recipe = recipe;
-    }
+	public CraftItemEvent(
+		Player player,
+		Item[] input,
+		Recipe recipe
+	)
+	{
+		this.player = player;
+		this.input = input;
+		this.recipe = recipe;
+	}
 
-    public static HandlerList getHandlers() {
-        return handlers;
-    }
+	public static HandlerList getHandlers()
+	{
+		return handlers;
+	}
 
-    public Item[] getInput() {
-        Item[] items = new Item[this.input.length];
-        for (int i = 0; i < this.input.length; i++) {
-            items[i] = this.input[i].clone();
-        }
+	public Item[] getInput()
+	{
+		Item[] items = new Item[this.input.length];
+		for (int i = 0 ; i < this.input.length ; i++)
+		{
+			items[i] = this.input[i].clone();
+		}
 
-        return items;
-    }
+		return items;
+	}
 
-    public Recipe getRecipe() {
-        return recipe;
-    }
+	public Recipe getRecipe()
+	{
+		return recipe;
+	}
 
-    public Player getPlayer() {
-        return player;
-    }
+	public Player getPlayer()
+	{
+		return player;
+	}
 
 }

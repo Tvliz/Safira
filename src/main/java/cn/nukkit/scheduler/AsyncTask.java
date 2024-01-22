@@ -9,87 +9,107 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 /**
  * @author Nukkit Project Team
  */
-public abstract class AsyncTask implements Runnable {
+public abstract class AsyncTask implements Runnable
+{
 
-    public static final Queue<AsyncTask> FINISHED_LIST = new ConcurrentLinkedQueue<>();
+	public static final Queue<AsyncTask> FINISHED_LIST = new ConcurrentLinkedQueue<>();
 
-    private Object result;
+	private Object result;
 
-    private int taskId;
+	private int taskId;
 
-    private boolean finished = false;
+	private boolean finished = false;
 
-    public static void collectTask() {
-        while (!FINISHED_LIST.isEmpty()) {
-            AsyncTask task = FINISHED_LIST.poll();
-            try {
-                task.onCompletion(Server.getInstance());
-            } catch (Exception e) {
-                Server.getInstance().getLogger().critical("Exception while async task "
-                        + task.getTaskId()
-                        + " invoking onCompletion", e);
-            }
-        }
-    }
+	public static void collectTask()
+	{
+		while (!FINISHED_LIST.isEmpty())
+		{
+			AsyncTask task = FINISHED_LIST.poll();
+			try
+			{
+				task.onCompletion(Server.getInstance());
+			}
+			catch (Exception e)
+			{
+				Server.getInstance().getLogger().critical("Exception while async task "
+				                                          + task.getTaskId()
+				                                          + " invoking onCompletion", e);
+			}
+		}
+	}
 
-    public void run() {
-        this.result = null;
-        this.onRun();
-        this.finished = true;
-        FINISHED_LIST.offer(this);
-    }
+	public void run()
+	{
+		this.result = null;
+		this.onRun();
+		this.finished = true;
+		FINISHED_LIST.offer(this);
+	}
 
-    public boolean isFinished() {
-        return this.finished;
-    }
+	public boolean isFinished()
+	{
+		return this.finished;
+	}
 
-    public Object getResult() {
-        return this.result;
-    }
+	public Object getResult()
+	{
+		return this.result;
+	}
 
-    public void setResult(Object result) {
-        this.result = result;
-    }
+	public void setResult(Object result)
+	{
+		this.result = result;
+	}
 
-    public boolean hasResult() {
-        return this.result != null;
-    }
+	public boolean hasResult()
+	{
+		return this.result != null;
+	}
 
-    public int getTaskId() {
-        return this.taskId;
-    }
+	public int getTaskId()
+	{
+		return this.taskId;
+	}
 
-    public void setTaskId(int taskId) {
-        this.taskId = taskId;
-    }
+	public void setTaskId(int taskId)
+	{
+		this.taskId = taskId;
+	}
 
-    public Object getFromThreadStore(String identifier) {
-        return this.isFinished() ? null : ThreadStore.store.get(identifier);
-    }
+	public Object getFromThreadStore(String identifier)
+	{
+		return this.isFinished() ? null : ThreadStore.store.get(identifier);
+	}
 
-    public void saveToThreadStore(
-            String identifier,
-            Object value
-    ) {
-        if (!this.isFinished()) {
-            if (value == null) {
-                ThreadStore.store.remove(identifier);
-            } else {
-                ThreadStore.store.put(identifier, value);
-            }
-        }
-    }
+	public void saveToThreadStore(
+		String identifier,
+		Object value
+	)
+	{
+		if (!this.isFinished())
+		{
+			if (value == null)
+			{
+				ThreadStore.store.remove(identifier);
+			} else
+			{
+				ThreadStore.store.put(identifier, value);
+			}
+		}
+	}
 
-    public abstract void onRun();
+	public abstract void onRun();
 
-    public void onCompletion(Server server) {
+	public void onCompletion(Server server)
+	{
 
-    }
+	}
 
-    public void cleanObject() {
-        this.result = null;
-        this.taskId = 0;
-        this.finished = false;
-    }
+	public void cleanObject()
+	{
+		this.result = null;
+		this.taskId = 0;
+		this.finished = false;
+	}
 
 }

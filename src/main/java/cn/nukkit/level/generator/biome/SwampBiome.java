@@ -10,39 +10,43 @@ import cn.nukkit.level.generator.populator.PopulatorTree;
 /**
  * author: MagicDroidX Nukkit Project
  */
-public class SwampBiome extends GrassyBiome {
+public class SwampBiome extends GrassyBiome
+{
 
-    public SwampBiome() {
-        super();
+	public SwampBiome()
+	{
+		super();
 
-        PopulatorLilyPad lilypad = new PopulatorLilyPad();
-        lilypad.setBaseAmount(4);
+		PopulatorLilyPad lilypad = new PopulatorLilyPad();
+		lilypad.setBaseAmount(4);
 
-        PopulatorTree trees = new PopulatorTree(BlockSapling.OAK);
-        trees.setBaseAmount(2);
+		PopulatorTree trees = new PopulatorTree(BlockSapling.OAK);
+		trees.setBaseAmount(2);
 
-        PopulatorFlower flower = new PopulatorFlower();
-        flower.setBaseAmount(2);
-        flower.addType(Block.RED_FLOWER, BlockFlower.TYPE_BLUE_ORCHID);
+		PopulatorFlower flower = new PopulatorFlower();
+		flower.setBaseAmount(2);
+		flower.addType(Block.RED_FLOWER, BlockFlower.TYPE_BLUE_ORCHID);
 
-        this.addPopulator(trees);
-        this.addPopulator(flower);
-        this.addPopulator(lilypad);
+		this.addPopulator(trees);
+		this.addPopulator(flower);
+		this.addPopulator(lilypad);
 
-        this.setElevation(62, 63);
+		this.setElevation(62, 63);
 
-        this.temperature = 0.8;
-        this.rainfall = 0.9;
-    }
+		this.temperature = 0.8;
+		this.rainfall = 0.9;
+	}
 
-    @Override
-    public String getName() {
-        return "Swamp";
-    }
+	@Override
+	public String getName()
+	{
+		return "Swamp";
+	}
 
-    @Override
-    public int getColor() {
-        return 0x6a7039;
-    }
+	@Override
+	public int getColor()
+	{
+		return 0x6a7039;
+	}
 
 }

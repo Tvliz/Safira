@@ -4,30 +4,34 @@ import cn.nukkit.entity.Entity;
 import cn.nukkit.event.Cancellable;
 import cn.nukkit.event.HandlerList;
 
-public class EntityPortalEnterEvent extends EntityEvent implements Cancellable {
+public class EntityPortalEnterEvent extends EntityEvent implements Cancellable
+{
 
-    public static final int TYPE_NETHER = 0;
+	public static final int TYPE_NETHER = 0;
 
-    public static final int TYPE_END = 1;
+	public static final int TYPE_END = 1;
 
-    private static final HandlerList handlers = new HandlerList();
+	private static final HandlerList handlers = new HandlerList();
 
-    private final int type;
+	private final int type;
 
-    public EntityPortalEnterEvent(
-            Entity entity,
-            int type
-    ) {
-        this.entity = entity;
-        this.type = type;
-    }
+	public EntityPortalEnterEvent(
+		Entity entity,
+		int type
+	)
+	{
+		this.entity = entity;
+		this.type = type;
+	}
 
-    public static HandlerList getHandlers() {
-        return handlers;
-    }
+	public static HandlerList getHandlers()
+	{
+		return handlers;
+	}
 
-    public int getPortalType() {
-        return type;
-    }
+	public int getPortalType()
+	{
+		return type;
+	}
 
 }

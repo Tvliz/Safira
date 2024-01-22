@@ -6,17 +6,20 @@ import cn.nukkit.network.protocol.LevelEventPacket;
 /**
  * Created on 2015/11/21 by xtypr. Package cn.nukkit.level.sound in project Nukkit .
  */
-public class ZombieHealSound extends GenericSound {
+public class ZombieHealSound extends GenericSound
+{
 
-    public ZombieHealSound(Vector3 pos) {
-        this(pos, 0);
-    }
+	public ZombieHealSound(Vector3 pos)
+	{
+		this(pos, 0);
+	}
 
-    public ZombieHealSound(
-            Vector3 pos,
-            float pitch
-    ) {
-        super(pos, LevelEventPacket.EVENT_SOUND_ZOMBIE_HEAL, pitch);
-    }
+	public ZombieHealSound(
+		Vector3 pos,
+		float pitch
+	)
+	{
+		super(pos, LevelEventPacket.EVENT_SOUND_ZOMBIE_HEAL, pitch);
+	}
 
 }

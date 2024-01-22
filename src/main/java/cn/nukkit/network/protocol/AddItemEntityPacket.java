@@ -5,47 +5,51 @@ import cn.nukkit.item.Item;
 /**
  * author: MagicDroidX Nukkit Project
  */
-public class AddItemEntityPacket extends DataPacket {
+public class AddItemEntityPacket extends DataPacket
+{
 
-    public static final byte NETWORK_ID = ProtocolInfo.ADD_ITEM_ENTITY_PACKET;
+	public static final byte NETWORK_ID = ProtocolInfo.ADD_ITEM_ENTITY_PACKET;
 
-    public long eid;
+	public long eid;
 
-    public Item item;
+	public Item item;
 
-    public float x;
+	public float x;
 
-    public float y;
+	public float y;
 
-    public float z;
+	public float z;
 
-    public float speedX;
+	public float speedX;
 
-    public float speedY;
+	public float speedY;
 
-    public float speedZ;
+	public float speedZ;
 
-    @Override
-    public byte pid() {
-        return NETWORK_ID;
-    }
+	@Override
+	public byte pid()
+	{
+		return NETWORK_ID;
+	}
 
-    @Override
-    public void decode() {
+	@Override
+	public void decode()
+	{
 
-    }
+	}
 
-    @Override
-    public void encode() {
-        this.reset();
-        this.putLong(this.eid);
-        this.putSlot(this.item);
-        this.putFloat(this.x);
-        this.putFloat(this.y);
-        this.putFloat(this.z);
-        this.putFloat(this.speedX);
-        this.putFloat(this.speedY);
-        this.putFloat(this.speedZ);
-    }
+	@Override
+	public void encode()
+	{
+		this.reset();
+		this.putLong(this.eid);
+		this.putSlot(this.item);
+		this.putFloat(this.x);
+		this.putFloat(this.y);
+		this.putFloat(this.z);
+		this.putFloat(this.speedX);
+		this.putFloat(this.speedY);
+		this.putFloat(this.speedZ);
+	}
 
 }

@@ -3,12 +3,13 @@ package cn.nukkit.plugin;
 /**
  * Created on 15-12-13.
  */
-public interface Library {
+public interface Library
+{
 
-    String getGroupId();
+	String getGroupId();
 
-    String getArtifactId();
+	String getArtifactId();
 
-    String getVersion();
+	String getVersion();
 
 }

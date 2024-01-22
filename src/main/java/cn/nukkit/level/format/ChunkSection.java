@@ -3,115 +3,116 @@ package cn.nukkit.level.format;
 /**
  * author: MagicDroidX Nukkit Project
  */
-public interface ChunkSection {
+public interface ChunkSection
+{
 
-    int getY();
+	int getY();
 
-    int getBlockId(
-            int x,
-            int y,
-            int z
-    );
+	int getBlockId(
+		int x,
+		int y,
+		int z
+	);
 
-    void setBlockId(
-            int x,
-            int y,
-            int z,
-            int id
-    );
+	void setBlockId(
+		int x,
+		int y,
+		int z,
+		int id
+	);
 
-    int getBlockData(
-            int x,
-            int y,
-            int z
-    );
+	int getBlockData(
+		int x,
+		int y,
+		int z
+	);
 
-    void setBlockData(
-            int x,
-            int y,
-            int z,
-            int data
-    );
+	void setBlockData(
+		int x,
+		int y,
+		int z,
+		int data
+	);
 
-    int getFullBlock(
-            int x,
-            int y,
-            int z
-    );
+	int getFullBlock(
+		int x,
+		int y,
+		int z
+	);
 
-    boolean setBlock(
-            int x,
-            int y,
-            int z
-    );
+	boolean setBlock(
+		int x,
+		int y,
+		int z
+	);
 
-    boolean setBlock(
-            int x,
-            int y,
-            int z,
-            Integer blockId
-    );
+	boolean setBlock(
+		int x,
+		int y,
+		int z,
+		Integer blockId
+	);
 
-    boolean setBlock(
-            int x,
-            int y,
-            int z,
-            Integer blockId,
-            Integer meta
-    );
+	boolean setBlock(
+		int x,
+		int y,
+		int z,
+		Integer blockId,
+		Integer meta
+	);
 
-    int getBlockSkyLight(
-            int x,
-            int y,
-            int z
-    );
+	int getBlockSkyLight(
+		int x,
+		int y,
+		int z
+	);
 
-    void setBlockSkyLight(
-            int x,
-            int y,
-            int z,
-            int level
-    );
+	void setBlockSkyLight(
+		int x,
+		int y,
+		int z,
+		int level
+	);
 
-    int getBlockLight(
-            int x,
-            int y,
-            int z
-    );
+	int getBlockLight(
+		int x,
+		int y,
+		int z
+	);
 
-    void setBlockLight(
-            int x,
-            int y,
-            int z,
-            int level
-    );
+	void setBlockLight(
+		int x,
+		int y,
+		int z,
+		int level
+	);
 
-    byte[] getBlockIdColumn(
-            int x,
-            int z
-    );
+	byte[] getBlockIdColumn(
+		int x,
+		int z
+	);
 
-    byte[] getBlockDataColumn(
-            int x,
-            int z
-    );
+	byte[] getBlockDataColumn(
+		int x,
+		int z
+	);
 
-    byte[] getBlockSkyLightColumn(
-            int x,
-            int z
-    );
+	byte[] getBlockSkyLightColumn(
+		int x,
+		int z
+	);
 
-    byte[] getBlockLightColumn(
-            int x,
-            int z
-    );
+	byte[] getBlockLightColumn(
+		int x,
+		int z
+	);
 
-    byte[] getIdArray();
+	byte[] getIdArray();
 
-    byte[] getDataArray();
+	byte[] getDataArray();
 
-    byte[] getSkyLightArray();
+	byte[] getSkyLightArray();
 
-    byte[] getLightArray();
+	byte[] getLightArray();
 
 }

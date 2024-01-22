@@ -6,16 +6,19 @@ import cn.nukkit.level.Level;
 /**
  * author: MagicDroidX Nukkit Project
  */
-public class LevelSaveEvent extends LevelEvent {
+public class LevelSaveEvent extends LevelEvent
+{
 
-    private static final HandlerList handlers = new HandlerList();
+	private static final HandlerList handlers = new HandlerList();
 
-    public LevelSaveEvent(Level level) {
-        super(level);
-    }
+	public LevelSaveEvent(Level level)
+	{
+		super(level);
+	}
 
-    public static HandlerList getHandlers() {
-        return handlers;
-    }
+	public static HandlerList getHandlers()
+	{
+		return handlers;
+	}
 
 }

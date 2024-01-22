@@ -7,11 +7,12 @@ import cn.nukkit.utils.EventException;
 /**
  * author: iNevet Nukkit Project
  */
-public interface EventExecutor {
+public interface EventExecutor
+{
 
-    void execute(
-            Listener listener,
-            Event event
-    ) throws EventException;
+	void execute(
+		Listener listener,
+		Event event
+	) throws EventException;
 
 }

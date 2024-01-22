@@ -9,259 +9,260 @@ import java.util.Map;
 /**
  * author: MagicDroidX Nukkit Project
  */
-public interface FullChunk extends Cloneable {
-
-    int getX();
-
-    void setX(int x);
-
-    int getZ();
-
-    void setZ(int z);
-
-    LevelProvider getProvider();
-
-    void setProvider(LevelProvider provider);
-
-    int getFullBlock(
-            int x,
-            int y,
-            int z
-    );
-
-    boolean setBlock(
-            int x,
-            int y,
-            int z
-    );
-
-    boolean setBlock(
-            int x,
-            int y,
-            int z,
-            Integer blockId
-    );
-
-    boolean setBlock(
-            int x,
-            int y,
-            int z,
-            Integer blockId,
-            Integer meta
-    );
-
-    int getBlockId(
-            int x,
-            int y,
-            int z
-    );
-
-    void setBlockId(
-            int x,
-            int y,
-            int z,
-            int id
-    );
-
-    int getBlockData(
-            int x,
-            int y,
-            int z
-    );
-
-    void setBlockData(
-            int x,
-            int y,
-            int z,
-            int data
-    );
-
-    int getBlockExtraData(
-            int x,
-            int y,
-            int z
-    );
-
-    void setBlockExtraData(
-            int x,
-            int y,
-            int z,
-            int data
-    );
-
-    int getBlockSkyLight(
-            int x,
-            int y,
-            int z
-    );
-
-    void setBlockSkyLight(
-            int x,
-            int y,
-            int z,
-            int level
-    );
-
-    int getBlockLight(
-            int x,
-            int y,
-            int z
-    );
-
-    void setBlockLight(
-            int x,
-            int y,
-            int z,
-            int level
-    );
+public interface FullChunk extends Cloneable
+{
+
+	int getX();
+
+	void setX(int x);
+
+	int getZ();
+
+	void setZ(int z);
+
+	LevelProvider getProvider();
+
+	void setProvider(LevelProvider provider);
+
+	int getFullBlock(
+		int x,
+		int y,
+		int z
+	);
+
+	boolean setBlock(
+		int x,
+		int y,
+		int z
+	);
+
+	boolean setBlock(
+		int x,
+		int y,
+		int z,
+		Integer blockId
+	);
+
+	boolean setBlock(
+		int x,
+		int y,
+		int z,
+		Integer blockId,
+		Integer meta
+	);
+
+	int getBlockId(
+		int x,
+		int y,
+		int z
+	);
+
+	void setBlockId(
+		int x,
+		int y,
+		int z,
+		int id
+	);
+
+	int getBlockData(
+		int x,
+		int y,
+		int z
+	);
+
+	void setBlockData(
+		int x,
+		int y,
+		int z,
+		int data
+	);
+
+	int getBlockExtraData(
+		int x,
+		int y,
+		int z
+	);
+
+	void setBlockExtraData(
+		int x,
+		int y,
+		int z,
+		int data
+	);
+
+	int getBlockSkyLight(
+		int x,
+		int y,
+		int z
+	);
+
+	void setBlockSkyLight(
+		int x,
+		int y,
+		int z,
+		int level
+	);
+
+	int getBlockLight(
+		int x,
+		int y,
+		int z
+	);
+
+	void setBlockLight(
+		int x,
+		int y,
+		int z,
+		int level
+	);
 
-    int getHighestBlockAt(
-            int x,
-            int z
-    );
+	int getHighestBlockAt(
+		int x,
+		int z
+	);
 
-    int getHighestBlockAt(
-            int x,
-            int z,
-            boolean cache
-    );
+	int getHighestBlockAt(
+		int x,
+		int z,
+		boolean cache
+	);
 
-    int getHeightMap(
-            int x,
-            int z
-    );
+	int getHeightMap(
+		int x,
+		int z
+	);
 
-    void setHeightMap(
-            int x,
-            int z,
-            int value
-    );
+	void setHeightMap(
+		int x,
+		int z,
+		int value
+	);
 
-    void recalculateHeightMap();
+	void recalculateHeightMap();
 
-    void populateSkyLight();
+	void populateSkyLight();
 
-    int getBiomeId(
-            int x,
-            int z
-    );
+	int getBiomeId(
+		int x,
+		int z
+	);
 
-    void setBiomeId(
-            int x,
-            int z,
-            int biomeId
-    );
+	void setBiomeId(
+		int x,
+		int z,
+		int biomeId
+	);
 
-    int[] getBiomeColor(
-            int x,
-            int z
-    );
+	int[] getBiomeColor(
+		int x,
+		int z
+	);
 
-    byte[] getBlockIdColumn(
-            int x,
-            int z
-    );
+	byte[] getBlockIdColumn(
+		int x,
+		int z
+	);
 
-    byte[] getBlockDataColumn(
-            int x,
-            int z
-    );
+	byte[] getBlockDataColumn(
+		int x,
+		int z
+	);
 
-    byte[] getBlockSkyLightColumn(
-            int x,
-            int z
-    );
+	byte[] getBlockSkyLightColumn(
+		int x,
+		int z
+	);
 
-    byte[] getBlockLightColumn(
-            int x,
-            int z
-    );
+	byte[] getBlockLightColumn(
+		int x,
+		int z
+	);
 
-    void setBiomeColor(
-            int x,
-            int z,
-            int R,
-            int G,
-            int B
-    );
+	void setBiomeColor(
+		int x,
+		int z,
+		int R,
+		int G,
+		int B
+	);
 
-    boolean isLightPopulated();
+	boolean isLightPopulated();
 
-    void setLightPopulated(boolean value);
+	void setLightPopulated(boolean value);
 
-    void setLightPopulated();
+	void setLightPopulated();
 
-    boolean isPopulated();
+	boolean isPopulated();
 
-    void setPopulated(boolean value);
+	void setPopulated(boolean value);
 
-    void setPopulated();
+	void setPopulated();
 
-    boolean isGenerated();
+	boolean isGenerated();
 
-    void setGenerated(boolean value);
+	void setGenerated(boolean value);
 
-    void setGenerated();
+	void setGenerated();
 
-    void addEntity(Entity entity);
+	void addEntity(Entity entity);
 
-    void removeEntity(Entity entity);
+	void removeEntity(Entity entity);
 
-    void addBlockEntity(BlockEntity blockEntity);
+	void addBlockEntity(BlockEntity blockEntity);
 
-    void removeBlockEntity(BlockEntity blockEntity);
+	void removeBlockEntity(BlockEntity blockEntity);
 
-    Map<Long, Entity> getEntities();
+	Map<Long, Entity> getEntities();
 
-    Map<Long, BlockEntity> getBlockEntities();
+	Map<Long, BlockEntity> getBlockEntities();
 
-    BlockEntity getTile(
-            int x,
-            int y,
-            int z
-    );
+	BlockEntity getTile(
+		int x,
+		int y,
+		int z
+	);
 
-    boolean isLoaded();
+	boolean isLoaded();
 
-    boolean load() throws IOException;
+	boolean load() throws IOException;
 
-    boolean load(boolean generate) throws IOException;
+	boolean load(boolean generate) throws IOException;
 
-    boolean unload() throws Exception;
+	boolean unload() throws Exception;
 
-    boolean unload(boolean save) throws Exception;
+	boolean unload(boolean save) throws Exception;
 
-    boolean unload(
-            boolean save,
-            boolean safe
-    ) throws Exception;
+	boolean unload(
+		boolean save,
+		boolean safe
+	) throws Exception;
 
-    void initChunk();
+	void initChunk();
 
-    byte[] getBiomeIdArray();
+	byte[] getBiomeIdArray();
 
-    int[] getBiomeColorArray();
+	int[] getBiomeColorArray();
 
-    int[] getHeightMapArray();
+	int[] getHeightMapArray();
 
-    byte[] getBlockIdArray();
+	byte[] getBlockIdArray();
 
-    byte[] getBlockDataArray();
+	byte[] getBlockDataArray();
 
-    Map<Integer, Integer> getBlockExtraDataArray();
+	Map<Integer, Integer> getBlockExtraDataArray();
 
-    byte[] getBlockSkyLightArray();
+	byte[] getBlockSkyLightArray();
 
-    byte[] getBlockLightArray();
+	byte[] getBlockLightArray();
 
-    byte[] toBinary();
+	byte[] toBinary();
 
-    byte[] toFastBinary();
+	byte[] toFastBinary();
 
-    boolean hasChanged();
+	boolean hasChanged();
 
-    void setChanged();
+	void setChanged();
 
-    void setChanged(boolean changed);
+	void setChanged(boolean changed);
 
 }

@@ -5,38 +5,42 @@ import cn.nukkit.item.Item;
 /**
  * author: MagicDroidX Nukkit Project
  */
-public class MobEquipmentPacket extends DataPacket {
+public class MobEquipmentPacket extends DataPacket
+{
 
-    public static final byte NETWORK_ID = ProtocolInfo.MOB_EQUIPMENT_PACKET;
+	public static final byte NETWORK_ID = ProtocolInfo.MOB_EQUIPMENT_PACKET;
 
-    public long eid;
+	public long eid;
 
-    public Item item;
+	public Item item;
 
-    public int slot;
+	public int slot;
 
-    public int selectedSlot;
+	public int selectedSlot;
 
-    @Override
-    public byte pid() {
-        return NETWORK_ID;
-    }
+	@Override
+	public byte pid()
+	{
+		return NETWORK_ID;
+	}
 
-    @Override
-    public void decode() {
-        this.eid = this.getLong();
-        this.item = this.getSlot();
-        this.slot = this.getByte();
-        this.selectedSlot = this.getByte();
-    }
+	@Override
+	public void decode()
+	{
+		this.eid = this.getLong();
+		this.item = this.getSlot();
+		this.slot = this.getByte();
+		this.selectedSlot = this.getByte();
+	}
 
-    @Override
-    public void encode() {
-        this.reset();
-        this.putLong(this.eid);
-        this.putSlot(this.item);
-        this.putByte((byte) this.slot);
-        this.putByte((byte) this.selectedSlot);
-    }
+	@Override
+	public void encode()
+	{
+		this.reset();
+		this.putLong(this.eid);
+		this.putSlot(this.item);
+		this.putByte((byte) this.slot);
+		this.putByte((byte) this.selectedSlot);
+	}
 
 }

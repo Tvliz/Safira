@@ -6,16 +6,18 @@ import cn.nukkit.block.BlockDirt;
 /**
  * author: Angelic47 Nukkit Project
  */
-public abstract class WateryBiome extends NormalBiome {
+public abstract class WateryBiome extends NormalBiome
+{
 
-    public WateryBiome() {
-        this.setGroundCover(new Block[]{
-                new BlockDirt(),
-                new BlockDirt(),
-                new BlockDirt(),
-                new BlockDirt(),
-                new BlockDirt()
-        });
-    }
+	public WateryBiome()
+	{
+		this.setGroundCover(new Block[] {
+			new BlockDirt(),
+			new BlockDirt(),
+			new BlockDirt(),
+			new BlockDirt(),
+			new BlockDirt()
+		});
+	}
 
 }

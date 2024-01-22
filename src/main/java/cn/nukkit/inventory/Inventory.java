@@ -10,89 +10,90 @@ import java.util.Set;
 /**
  * author: MagicDroidX Nukkit Project
  */
-public interface Inventory {
+public interface Inventory
+{
 
-    int MAX_STACK = 64;
+	int MAX_STACK = 64;
 
-    int getSize();
+	int getSize();
 
-    int getMaxStackSize();
+	int getMaxStackSize();
 
-    void setMaxStackSize(int size);
+	void setMaxStackSize(int size);
 
-    String getName();
+	String getName();
 
-    String getTitle();
+	String getTitle();
 
-    Item getItem(int index);
+	Item getItem(int index);
 
-    boolean setItem(
-            int index,
-            Item item
-    );
+	boolean setItem(
+		int index,
+		Item item
+	);
 
-    Item[] addItem(Item... slots);
+	Item[] addItem(Item... slots);
 
-    boolean canAddItem(Item item);
+	boolean canAddItem(Item item);
 
-    Item[] removeItem(Item... slots);
+	Item[] removeItem(Item... slots);
 
-    Map<Integer, Item> getContents();
+	Map<Integer, Item> getContents();
 
-    void setContents(Map<Integer, Item> items);
+	void setContents(Map<Integer, Item> items);
 
-    void sendContents(Player player);
+	void sendContents(Player player);
 
-    void sendContents(Player[] players);
+	void sendContents(Player[] players);
 
-    void sendContents(Collection<Player> players);
+	void sendContents(Collection<Player> players);
 
-    void sendSlot(
-            int index,
-            Player player
-    );
+	void sendSlot(
+		int index,
+		Player player
+	);
 
-    void sendSlot(
-            int index,
-            Player[] players
-    );
+	void sendSlot(
+		int index,
+		Player[] players
+	);
 
-    void sendSlot(
-            int index,
-            Collection<Player> players
-    );
+	void sendSlot(
+		int index,
+		Collection<Player> players
+	);
 
-    boolean contains(Item item);
+	boolean contains(Item item);
 
-    Map<Integer, Item> all(Item item);
+	Map<Integer, Item> all(Item item);
 
-    int first(Item item);
+	int first(Item item);
 
-    int firstEmpty(Item item);
+	int firstEmpty(Item item);
 
-    void remove(Item item);
+	void remove(Item item);
 
-    boolean clear(int index);
+	boolean clear(int index);
 
-    void clearAll();
+	void clearAll();
 
-    Set<Player> getViewers();
+	Set<Player> getViewers();
 
-    InventoryType getType();
+	InventoryType getType();
 
-    InventoryHolder getHolder();
+	InventoryHolder getHolder();
 
-    void onOpen(Player who);
+	void onOpen(Player who);
 
-    boolean open(Player who);
+	boolean open(Player who);
 
-    void close(Player who);
+	void close(Player who);
 
-    void onClose(Player who);
+	void onClose(Player who);
 
-    void onSlotChange(
-            int index,
-            Item before
-    );
+	void onSlotChange(
+		int index,
+		Item before
+	);
 
 }

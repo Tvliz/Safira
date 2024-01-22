@@ -3,105 +3,97 @@ package cn.nukkit;
 import cn.nukkit.utils.MainLogger;
 import cn.nukkit.utils.ServerKiller;
 
-/**
- * `_   _       _    _    _ _ | \ | |     | |  | |  (_) | |  \| |_   _| | _| | ___| |_ | . ` | | | | |/ / |/ / | __| | |\  | |_| |   <|   <| | |_ |_| \_|\__,_|_|\_\_|\_\_|\__|
- */
+import com.google.common.base.Preconditions;
 
-/**
- * Nukkit启动类，包含{@code main}函数。<br>
- * The launcher class of Nukkit, including the {@code main} function.
- *
- * @author MagicDroidX(code) @ Nukkit Project
- * @author 粉鞋大妈(javadoc) @ Nukkit Project
- * @since Nukkit 1.0 | Nukkit API 1.0.0
- */
-public class Nukkit {
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.LoggerContext;
 
-    public final static String VERSION = "1.0dev";
+public class Nukkit
+{
 
-    public final static String API_VERSION = "1.0.0";
+	public final static String VERSION = "1.0dev";
 
-    public final static String CODENAME = "蘋果(Apple)派(Pie)";
+	public final static String API_VERSION = "1.0.0";
 
-    public final static String MINECRAFT_VERSION = "v0.15.10 alpha";
+	public final static String CODENAME = "蘋果(Apple)派(Pie)";
 
-    public final static String MINECRAFT_VERSION_NETWORK = "0.15.10";
+	public final static String MINECRAFT_VERSION = "v0.15.10 alpha";
 
-    public final static String PATH = System.getProperty("user.dir") + "/";
+	public final static String MINECRAFT_VERSION_NETWORK = "0.15.10";
 
-    public final static String DATA_PATH = System.getProperty("user.dir") + "/";
+	public final static String PATH = System.getProperty("user.dir") + "/";
 
-    public final static String PLUGIN_PATH = DATA_PATH + "plugins";
+	public final static String DATA_PATH = System.getProperty("user.dir") + "/";
 
-    public static final long START_TIME = System.currentTimeMillis();
+	public final static String PLUGIN_PATH = DATA_PATH + "plugins";
 
-    public static boolean ANSI = true;
+	public static final long START_TIME = System.currentTimeMillis();
 
-    public static boolean shortTitle = false;
+	public static boolean shortTitle = false;
 
-    public static int DEBUG = 1;
+	public static int DEBUG = 1;
 
-    public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 
-        //Shorter title for windows 8/2012
-        String osName = System.getProperty("os.name").toLowerCase();
-        if (osName.contains("windows")) {
-            if (osName.contains("windows 8") || osName.contains("2012")) {
-                shortTitle = true;
-            }
-        }
+		String osName = System.getProperty("os.name").toLowerCase();
 
-        //启动参数
-        for (String arg : args) {
-            if (arg.equals("disable-ansi")) {
-                ANSI = false;
-                break;
-            }
-        }
+		if (osName.contains("windows"))
+		{
+			if (osName.contains("windows 8") || osName.contains("2012"))
+			{
+				shortTitle = true;
+			}
+		}
 
-        MainLogger logger = new MainLogger(DATA_PATH + "server.log");
+		MainLogger.getLogger().info("Starting Nukkit Server For Minecraft: PE");
 
-        try {
-            if (ANSI) {
-                System.out.print((char) 0x1b + "]0;Starting Nukkit Server For Minecraft: PE" + (char) 0x07);
-            }
+		new Server(PATH, DATA_PATH, PLUGIN_PATH);
 
-            new Server(logger, PATH, DATA_PATH, PLUGIN_PATH);
-        } catch (Exception e) {
-            logger.logException(e);
-        }
+		MainLogger.getLogger().info("Stopping server");
+		MainLogger.getLogger().info("Stopping other threads");
 
-        if (ANSI) {
-            System.out.print((char) 0x1b + "]0;Stopping Server..." + (char) 0x07);
-        }
+		Thread.getAllStackTraces().keySet().stream().filter(thread -> thread instanceof InterruptibleThread).forEach(thread -> {
+			MainLogger.getLogger().debug(String.format("Stopping %s thread", thread.getClass().getSimpleName()));
+			if (thread.isAlive())
+			{
+				thread.interrupt();
+			}
+		});
 
-        logger.info("Stopping other threads");
+		var killer = new ServerKiller(8);
 
-        for (Thread thread : java.lang.Thread.getAllStackTraces().keySet()) {
-            if (!(thread instanceof InterruptibleThread)) {
-                continue;
-            }
+		killer.start();
 
-            logger.debug("Stopping " + thread.getClass().getSimpleName() + " thread");
+		MainLogger.getLogger().info("Server stopped");
 
-            if (thread.isAlive()) {
-                thread.interrupt();
-            }
-        }
+		System.exit(0);
+	}
 
-        ServerKiller killer = new ServerKiller(8);
+	public static Level getLogLevel()
+	{
+		if (LogManager.getContext(false) instanceof LoggerContext context)
+		{
+			var configuration = context.getConfiguration();
+			var loggerConfiguration = configuration.getLoggerConfig(LogManager.ROOT_LOGGER_NAME);
+			return loggerConfiguration.getLevel();
+		}
+		return Level.INFO;
+	}
 
-        killer.start();
-
-        logger.shutdown();
-        logger.interrupt();
-
-        if (ANSI) {
-            System.out.print((char) 0x1b + "]0;Server Stopped" + (char) 0x07);
-        }
-
-        System.exit(0);
-    }
-
+	public static void setLogLevel(
+		Level level
+	)
+	{
+		Preconditions.checkNotNull(level, "Logger level cannot be null");
+		if (LogManager.getContext(false) instanceof LoggerContext context)
+		{
+			var configuration = context.getConfiguration();
+			var loggerConfiguration = configuration.getLoggerConfig(LogManager.ROOT_LOGGER_NAME);
+			loggerConfiguration.setLevel(level);
+			context.updateLoggers();
+		}
+	}
 
 }

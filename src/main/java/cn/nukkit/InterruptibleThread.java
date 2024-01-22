@@ -12,6 +12,7 @@ package cn.nukkit;
  * @see ConsoleCommandReader
  * @since Nukkit 1.0 | Nukkit API 1.0.0
  */
-public interface InterruptibleThread {
+public interface InterruptibleThread
+{
 
 }

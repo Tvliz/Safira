@@ -6,12 +6,14 @@ import cn.nukkit.event.Event;
 /**
  * author: MagicDroidX Nukkit Project
  */
-public abstract class PlayerEvent extends Event {
+public abstract class PlayerEvent extends Event
+{
 
-    protected Player player;
+	protected Player player;
 
-    public Player getPlayer() {
-        return player;
-    }
+	public Player getPlayer()
+	{
+		return player;
+	}
 
 }

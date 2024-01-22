@@ -3,35 +3,38 @@ package cn.nukkit.level.format;
 /**
  * author: MagicDroidX Nukkit Project
  */
-public interface Chunk extends FullChunk {
+public interface Chunk extends FullChunk
+{
 
-    byte SECTION_COUNT = 8;
+	byte SECTION_COUNT = 8;
 
-    boolean isSectionEmpty(float fY);
+	boolean isSectionEmpty(float fY);
 
-    ChunkSection getSection(float fY);
+	ChunkSection getSection(float fY);
 
-    boolean setSection(
-            float fY,
-            ChunkSection section
-    );
+	boolean setSection(
+		float fY,
+		ChunkSection section
+	);
 
-    ChunkSection[] getSections();
+	ChunkSection[] getSections();
 
-    class Entry {
+	class Entry
+	{
 
-        public final int chunkX;
+		public final int chunkX;
 
-        public final int chunkZ;
+		public final int chunkZ;
 
-        public Entry(
-                int chunkX,
-                int chunkZ
-        ) {
-            this.chunkX = chunkX;
-            this.chunkZ = chunkZ;
-        }
+		public Entry(
+			int chunkX,
+			int chunkZ
+		)
+		{
+			this.chunkX = chunkX;
+			this.chunkZ = chunkZ;
+		}
 
-    }
+	}
 
 }

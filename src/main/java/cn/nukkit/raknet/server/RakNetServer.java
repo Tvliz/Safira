@@ -8,111 +8,133 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 /**
  * author: MagicDroidX Nukkit Project
  */
-public class RakNetServer extends Thread {
+public class RakNetServer extends Thread
+{
 
-    protected final int port;
+	protected final int port;
 
-    protected String interfaz;
+	protected String interfaz;
 
-    protected ThreadedLogger logger;
+	protected ThreadedLogger logger;
 
-    protected ConcurrentLinkedQueue<byte[]> externalQueue;
+	protected ConcurrentLinkedQueue<byte[]> externalQueue;
 
-    protected ConcurrentLinkedQueue<byte[]> internalQueue;
+	protected ConcurrentLinkedQueue<byte[]> internalQueue;
 
-    protected boolean shutdown;
+	protected boolean shutdown;
 
 
-    public RakNetServer(
-            ThreadedLogger logger,
-            int port
-    ) {
-        this(logger, port, "0.0.0.0");
-    }
+	public RakNetServer(
+		ThreadedLogger logger,
+		int port
+	)
+	{
+		this(logger, port, "0.0.0.0");
+	}
 
-    public RakNetServer(
-            ThreadedLogger logger,
-            int port,
-            String interfaz
-    ) {
-        this.port = port;
-        if (port < 1 || port > 65536) {
-            throw new IllegalArgumentException("Invalid port range");
-        }
+	public RakNetServer(
+		ThreadedLogger logger,
+		int port,
+		String interfaz
+	)
+	{
+		this.port = port;
+		if (port < 1 || port > 65536)
+		{
+			throw new IllegalArgumentException("Invalid port range");
+		}
 
-        this.interfaz = interfaz;
-        this.logger = logger;
+		this.interfaz = interfaz;
+		this.logger = logger;
 
-        this.externalQueue = new ConcurrentLinkedQueue<>();
-        this.internalQueue = new ConcurrentLinkedQueue<>();
+		this.externalQueue = new ConcurrentLinkedQueue<>();
+		this.internalQueue = new ConcurrentLinkedQueue<>();
 
-        this.start();
-    }
+		this.start();
+	}
 
-    public boolean isShutdown() {
-        return shutdown;
-    }
+	public boolean isShutdown()
+	{
+		return shutdown;
+	}
 
-    public void shutdown() {
-        this.shutdown = true;
-    }
+	public void shutdown()
+	{
+		this.shutdown = true;
+	}
 
-    public int getPort() {
-        return port;
-    }
+	public int getPort()
+	{
+		return port;
+	}
 
-    public String getInterface() {
-        return interfaz;
-    }
+	public String getInterface()
+	{
+		return interfaz;
+	}
 
-    public ThreadedLogger getLogger() {
-        return logger;
-    }
+	public ThreadedLogger getLogger()
+	{
+		return logger;
+	}
 
-    public ConcurrentLinkedQueue<byte[]> getExternalQueue() {
-        return externalQueue;
-    }
+	public ConcurrentLinkedQueue<byte[]> getExternalQueue()
+	{
+		return externalQueue;
+	}
 
-    public ConcurrentLinkedQueue<byte[]> getInternalQueue() {
-        return internalQueue;
-    }
+	public ConcurrentLinkedQueue<byte[]> getInternalQueue()
+	{
+		return internalQueue;
+	}
 
-    public void pushMainToThreadPacket(byte[] data) {
-        this.internalQueue.add(data);
-    }
+	public void pushMainToThreadPacket(byte[] data)
+	{
+		this.internalQueue.add(data);
+	}
 
-    public byte[] readMainToThreadPacket() {
-        return this.internalQueue.poll();
-    }
+	public byte[] readMainToThreadPacket()
+	{
+		return this.internalQueue.poll();
+	}
 
-    public void pushThreadToMainPacket(byte[] data) {
-        this.externalQueue.add(data);
-    }
+	public void pushThreadToMainPacket(byte[] data)
+	{
+		this.externalQueue.add(data);
+	}
 
-    public byte[] readThreadToMainPacket() {
-        return this.externalQueue.poll();
-    }
+	public byte[] readThreadToMainPacket()
+	{
+		return this.externalQueue.poll();
+	}
 
-    @Override
-    public void run() {
-        this.setName("RakNet Thread #" + Thread.currentThread().getId());
-        Runtime.getRuntime().addShutdownHook(new ShutdownHandler());
-        UDPServerSocket socket = new UDPServerSocket(this.getLogger(), port, this.interfaz);
-        try {
-            new SessionManager(this, socket);
-        } catch (Exception e) {
-            Server.getInstance().getLogger().logException(e);
-        }
-    }
+	@Override
+	public void run()
+	{
+		this.setName("RakNet Thread #" + Thread.currentThread().getId());
+		Runtime.getRuntime().addShutdownHook(new ShutdownHandler());
+		UDPServerSocket socket = new UDPServerSocket(this.getLogger(), port, this.interfaz);
+		try
+		{
+			new SessionManager(this, socket);
+		}
+		catch (Exception e)
+		{
+			Server.getInstance().getLogger().logException(e);
+		}
+	}
 
-    private class ShutdownHandler extends Thread {
+	private class ShutdownHandler extends Thread
+	{
 
-        public void run() {
-            if (!shutdown) {
-                logger.emergency("RakNet crashed!");
-            }
-        }
+		public void run()
+		{
+			if (!shutdown)
+			{
+				logger.emergency("RakNet crashed!");
+			}
+		}
 
-    }
+	}
 
 }

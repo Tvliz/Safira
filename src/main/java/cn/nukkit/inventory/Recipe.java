@@ -7,14 +7,15 @@ import java.util.UUID;
 /**
  * author: MagicDroidX Nukkit Project
  */
-public interface Recipe {
+public interface Recipe
+{
 
-    Item getResult();
+	Item getResult();
 
-    void registerToCraftingManager();
+	void registerToCraftingManager();
 
-    UUID getId();
+	UUID getId();
 
-    void setId(UUID id);
+	void setId(UUID id);
 
 }

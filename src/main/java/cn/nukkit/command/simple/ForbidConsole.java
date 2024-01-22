@@ -8,8 +8,9 @@ import java.lang.annotation.Target;
 /**
  * @author Tee7even
  */
-@Target(ElementType.METHOD)
-@Retention(RetentionPolicy.RUNTIME)
-public @interface ForbidConsole {
+@Target (ElementType.METHOD)
+@Retention (RetentionPolicy.RUNTIME)
+public @interface ForbidConsole
+{
 
 }

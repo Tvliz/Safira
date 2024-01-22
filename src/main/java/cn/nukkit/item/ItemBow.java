@@ -3,31 +3,37 @@ package cn.nukkit.item;
 /**
  * author: MagicDroidX Nukkit Project
  */
-public class ItemBow extends ItemTool {
+public class ItemBow extends ItemTool
+{
 
-    public ItemBow() {
-        this(0, 1);
-    }
+	public ItemBow()
+	{
+		this(0, 1);
+	}
 
-    public ItemBow(Integer meta) {
-        this(meta, 1);
-    }
+	public ItemBow(Integer meta)
+	{
+		this(meta, 1);
+	}
 
-    public ItemBow(
-            Integer meta,
-            int count
-    ) {
-        super(BOW, meta, count, "Bow");
-    }
+	public ItemBow(
+		Integer meta,
+		int count
+	)
+	{
+		super(BOW, meta, count, "Bow");
+	}
 
-    @Override
-    public int getMaxDurability() {
-        return ItemTool.DURABILITY_BOW;
-    }
+	@Override
+	public int getMaxDurability()
+	{
+		return ItemTool.DURABILITY_BOW;
+	}
 
-    @Override
-    public int getEnchantAbility() {
-        return 1;
-    }
+	@Override
+	public int getEnchantAbility()
+	{
+		return 1;
+	}
 
 }

@@ -1,0 +1,31 @@
+2024-1-22 00:12:28 [INFO] Welcome! Please choose a language first!
+2024-1-22 00:12:28 [INFO] eng => English
+2024-1-22 00:12:28 [INFO] bra => Português-Brasil
+2024-1-22 00:12:35 [INFO] Loading nukkit.yml...
+2024-1-22 00:12:36 [INFO] Loading server properties...
+2024-1-22 00:12:36 [INFO] Selected English (eng) as the base language
+2024-1-22 00:12:36 [INFO] Starting Minecraft: PE server version v0.15.10 alpha
+2024-1-22 00:12:36 [INFO] Opening server on 0.0.0.0:19132
+2024-1-22 00:12:36 [INFO] This server is running Nukkit version 1.0dev "蘋果(Apple)派(Pie)" (API 1.0.0)
+2024-1-22 00:12:36 [INFO] Nukkit is distributed under the LGPL License
+2024-1-22 00:12:37 [NOTICE] Level "world" not found
+2024-1-22 00:12:37 [INFO] Preparing level "world"
+2024-1-22 00:12:37 [INFO] Starting GS4 status listener
+2024-1-22 00:12:37 [INFO] Setting query port to 19132
+2024-1-22 00:12:37 [INFO] Query is running on 0.0.0.0:19132
+2024-1-22 00:12:37 [INFO] Default game type: Survival Mode
+2024-1-22 00:12:37 [INFO] Done (10.123s)! For help, type "help" or "?"
+2024-1-22 00:12:43 [EMERGENCY] RakNet crashed!
+2024-1-22 00:22:54 [INFO] Loading nukkit.yml...
+2024-1-22 00:22:55 [INFO] Loading server properties...
+2024-1-22 00:22:55 [INFO] Selected English (eng) as the base language
+2024-1-22 00:22:55 [INFO] Starting Minecraft: PE server version v0.15.10 alpha
+2024-1-22 00:22:55 [INFO] Opening server on 0.0.0.0:19132
+2024-1-22 00:22:55 [INFO] This server is running Nukkit version 1.0dev "蘋果(Apple)派(Pie)" (API 1.0.0)
+2024-1-22 00:22:55 [INFO] Nukkit is distributed under the LGPL License
+2024-1-22 00:22:56 [INFO] Preparing level "world"
+2024-1-22 00:22:56 [INFO] Starting GS4 status listener
+2024-1-22 00:22:56 [INFO] Setting query port to 19132
+2024-1-22 00:22:56 [INFO] Query is running on 0.0.0.0:19132
+2024-1-22 00:22:56 [INFO] Default game type: Survival Mode
+2024-1-22 00:22:56 [INFO] Done (2.178s)! For help, type "help" or "?"

@@ -5,42 +5,49 @@ import cn.nukkit.event.Cancellable;
 import cn.nukkit.event.HandlerList;
 import cn.nukkit.level.Location;
 
-public class PlayerMoveEvent extends PlayerEvent implements Cancellable {
+public class PlayerMoveEvent extends PlayerEvent implements Cancellable
+{
 
-    private static final HandlerList handlers = new HandlerList();
+	private static final HandlerList handlers = new HandlerList();
 
-    private Location from;
+	private Location from;
 
-    private Location to;
+	private Location to;
 
-    public PlayerMoveEvent(
-            Player player,
-            Location from,
-            Location to
-    ) {
-        this.player = player;
-        this.from = from;
-        this.to = to;
-    }
+	public PlayerMoveEvent(
+		Player player,
+		Location from,
+		Location to
+	)
+	{
+		this.player = player;
+		this.from = from;
+		this.to = to;
+	}
 
-    public static HandlerList getHandlers() {
-        return handlers;
-    }
+	public static HandlerList getHandlers()
+	{
+		return handlers;
+	}
 
-    public Location getFrom() {
-        return from;
-    }
+	public Location getFrom()
+	{
+		return from;
+	}
 
-    public void setFrom(Location from) {
-        this.from = from;
-    }
+	public void setFrom(Location from)
+	{
+		this.from = from;
+	}
 
-    public Location getTo() {
-        return to;
-    }
+	public Location getTo()
+	{
+		return to;
+	}
 
-    public void setTo(Location to) {
-        this.to = to;
-    }
+	public void setTo(Location to)
+	{
+		this.to = to;
+	}
 
 }

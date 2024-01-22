@@ -19,33 +19,40 @@ import cn.nukkit.utils.EventException;
  * @see cn.nukkit.event.EventHandler
  * @since Nukkit 1.0 | Nukkit API 1.0.0
  */
-public abstract class Event {
+public abstract class Event
+{
 
-    protected String eventName = null;
+	protected String eventName = null;
 
-    private boolean isCancelled = false;
+	private boolean isCancelled = false;
 
-    final public String getEventName() {
-        return eventName == null ? getClass().getName() : eventName;
-    }
+	final public String getEventName()
+	{
+		return eventName == null ? getClass().getName() : eventName;
+	}
 
-    public boolean isCancelled() {
-        if (!(this instanceof Cancellable)) {
-            throw new EventException("Event is not Cancellable");
-        }
-        return isCancelled;
-    }
+	public boolean isCancelled()
+	{
+		if (!(this instanceof Cancellable))
+		{
+			throw new EventException("Event is not Cancellable");
+		}
+		return isCancelled;
+	}
 
-    public void setCancelled(boolean value) {
-        if (!(this instanceof Cancellable)) {
-            throw new EventException("Event is not Cancellable");
-        }
-        isCancelled = value;
-    }
+	public void setCancelled(boolean value)
+	{
+		if (!(this instanceof Cancellable))
+		{
+			throw new EventException("Event is not Cancellable");
+		}
+		isCancelled = value;
+	}
 
-    public void setCancelled() {
-        setCancelled(true);
-    }
+	public void setCancelled()
+	{
+		setCancelled(true);
+	}
 
 
 }

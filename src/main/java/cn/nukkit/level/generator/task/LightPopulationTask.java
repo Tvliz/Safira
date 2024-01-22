@@ -8,46 +8,53 @@ import cn.nukkit.scheduler.AsyncTask;
 /**
  * author: MagicDroidX Nukkit Project
  */
-public class LightPopulationTask extends AsyncTask {
+public class LightPopulationTask extends AsyncTask
+{
 
-    public final int levelId;
+	public final int levelId;
 
-    public BaseFullChunk chunk;
+	public BaseFullChunk chunk;
 
-    public LightPopulationTask(
-            Level level,
-            BaseFullChunk chunk
-    ) {
-        this.levelId = level.getId();
-        this.chunk = chunk;
-    }
+	public LightPopulationTask(
+		Level level,
+		BaseFullChunk chunk
+	)
+	{
+		this.levelId = level.getId();
+		this.chunk = chunk;
+	}
 
-    @Override
-    public void onRun() {
-        BaseFullChunk chunk = this.chunk.clone();
-        if (chunk == null) {
-            return;
-        }
+	@Override
+	public void onRun()
+	{
+		BaseFullChunk chunk = this.chunk.clone();
+		if (chunk == null)
+		{
+			return;
+		}
 
-        chunk.recalculateHeightMap();
-        chunk.populateSkyLight();
-        chunk.setLightPopulated();
+		chunk.recalculateHeightMap();
+		chunk.populateSkyLight();
+		chunk.setLightPopulated();
 
-        this.chunk = chunk.clone();
-    }
+		this.chunk = chunk.clone();
+	}
 
-    @Override
-    public void onCompletion(Server server) {
-        Level level = server.getLevel(this.levelId);
+	@Override
+	public void onCompletion(Server server)
+	{
+		Level level = server.getLevel(this.levelId);
 
-        BaseFullChunk chunk = this.chunk.clone();
-        if (level != null) {
-            if (chunk == null) {
-                return;
-            }
+		BaseFullChunk chunk = this.chunk.clone();
+		if (level != null)
+		{
+			if (chunk == null)
+			{
+				return;
+			}
 
-            level.generateChunkCallback(chunk.getX(), chunk.getZ(), chunk);
-        }
-    }
+			level.generateChunkCallback(chunk.getX(), chunk.getZ(), chunk);
+		}
+	}
 
 }

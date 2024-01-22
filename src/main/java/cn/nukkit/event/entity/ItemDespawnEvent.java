@@ -7,21 +7,25 @@ import cn.nukkit.event.HandlerList;
 /**
  * author: MagicDroidX Nukkit Project
  */
-public class ItemDespawnEvent extends EntityEvent implements Cancellable {
+public class ItemDespawnEvent extends EntityEvent implements Cancellable
+{
 
-    private static final HandlerList handlers = new HandlerList();
+	private static final HandlerList handlers = new HandlerList();
 
-    public ItemDespawnEvent(EntityItem item) {
-        this.entity = item;
-    }
+	public ItemDespawnEvent(EntityItem item)
+	{
+		this.entity = item;
+	}
 
-    public static HandlerList getHandlers() {
-        return handlers;
-    }
+	public static HandlerList getHandlers()
+	{
+		return handlers;
+	}
 
-    @Override
-    public EntityItem getEntity() {
-        return (EntityItem) this.entity;
-    }
+	@Override
+	public EntityItem getEntity()
+	{
+		return (EntityItem) this.entity;
+	}
 
 }
